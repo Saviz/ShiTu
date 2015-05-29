@@ -189,18 +189,18 @@
     UIImage *photo = [TGAlbum imageWithMediaInfo:info];
     NSURL *path = [info valueForKey:UIImagePickerControllerReferenceURL];
     
-    ALAssetsLibrary *assetLibrary=[[ALAssetsLibrary alloc] init];
-    [assetLibrary assetForURL:path resultBlock:^(ALAsset *asset)
-     {
-         ALAssetRepresentation *rep = [asset defaultRepresentation];
-         NSDictionary *GPS = rep.metadata[@"{GPS}"];
-         NSLog(@"latitude :%@, Longitude:%@", GPS[@"Latitude"], GPS[@"Longitude"]);
-         
-     }
-                 failureBlock:^(NSError *err) {
-                     NSLog(@"Error: %@",[err localizedDescription]);
-                 }];
-    
+//    ALAssetsLibrary *assetLibrary=[[ALAssetsLibrary alloc] init];
+//    [assetLibrary assetForURL:path resultBlock:^(ALAsset *asset)
+//     {
+//         ALAssetRepresentation *rep = [asset defaultRepresentation];
+//         NSDictionary *GPS = rep.metadata[@"{GPS}"];
+//         NSLog(@"latitude :%@, Longitude:%@", GPS[@"Latitude"], GPS[@"Longitude"]);
+//         
+//     }
+//                 failureBlock:^(NSError *err) {
+//                     NSLog(@"Error: %@",[err localizedDescription]);
+//                 }];
+//    
     
 
     TGPhotoViewController *viewController = [TGPhotoViewController newWithDelegate:_delegate photo:photo path:path];

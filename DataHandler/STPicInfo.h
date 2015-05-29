@@ -12,8 +12,8 @@
 @interface STPicInfo : NSObject
 
 @property (nonatomic, retain) NSString *url;
-@property (nonatomic) CLLocationCoordinate2D gps;
-@property (nonatomic) BOOL isGpsSetted;
+@property (nonatomic, assign) CLLocationCoordinate2D gps;
+@property (nonatomic, assign) BOOL isGpsSetted;
 
 
 

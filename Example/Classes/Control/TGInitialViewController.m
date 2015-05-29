@@ -9,13 +9,12 @@
 #import "TGInitialViewController.h"
 #import "TGCamera.h"
 #import "TGCameraViewController.h"
+#import "MCShituViewController.h"
+#import "STPicInfo.h"
 
 @interface TGInitialViewController () <TGCameraDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
-@property(nonatomic, retain) NSString *longitude;
-@property(nonatomic, retain) NSString *lantitude;
-@property(nonatomic, retain) NSString *uploadedUrl;
 
 
 - (IBAction)takePhotoTapped;
@@ -64,21 +63,16 @@
 - (void) onLocationInfoGot:(NSNotification*)notification {
     if ([notification.name isEqualToString:@"TGLocationInfoGot"]){
         NSLog(@"%@" , notification.object);
-        self.uploadedUrl = notification.object[@"uploadUrl"];
-        if ([notification.object[@"longitude"] isEqualToString: @"null"]) {
-            if (self.location!=nil) {
-                self.longitude = [NSString stringWithFormat:@"%f",self.location.coordinate.longitude];
-                self.lantitude = [NSString stringWithFormat:@"%f",self.location.coordinate.latitude];
-            } else {
-                  NSLog(@"need location map...");
-            }
-        } else {
-            self.longitude = notification.object[@"longitude"];
-            self.lantitude = notification.object[@"lantitude"];
+        
+        STPicInfo *info = (STPicInfo *)notification.object;
+        if (![info isGpsSetted]){
+            info.gps = self.location.coordinate;
         }
-    }
     
-    NSLog(@"%@, %@, %@", self.uploadedUrl, self.lantitude, self.longitude);
+        MCShituViewController *controller = [MCShituViewController createWebViewPageWithGPS:info.gps andImageUrl:info.url];
+        [self.navigationController pushViewController:controller animated:NO];
+    }
+//    NSLog(@"%@, %@, %@", self.uploadedUrl, self.latitude, self.longitude);
     
 }
 
@@ -211,19 +205,19 @@
 
 - (void)cameraDidCancel
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
 //    _photoView.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)cameraDidSelectAlbumPhoto:(UIImage *)image
 {
 //    _photoView.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark -

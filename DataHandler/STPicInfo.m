@@ -22,7 +22,7 @@
 
 - (void)setGps:(CLLocationCoordinate2D)gps {
     self.isGpsSetted = YES;
-    self.gps = gps;
+    _gps = gps;
 }
 
 

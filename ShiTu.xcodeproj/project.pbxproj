@@ -17,7 +17,6 @@
 		A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676001B1871DC001CA717 /* NSString+URLEncoding.m */; };
 		A49676161B1880C4001CA717 /* MCMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676111B1880C4001CA717 /* MCMapViewController.m */; };
 		A49676171B1880C4001CA717 /* MCPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676131B1880C4001CA717 /* MCPinAnnotation.m */; };
-		A49676181B1880C4001CA717 /* MCPoiAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676151B1880C4001CA717 /* MCPoiAnnotation.m */; };
 		A496761B1B188C5B001CA717 /* STPicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A496761A1B188C5B001CA717 /* STPicInfo.m */; };
 		B82303F31B18426A00C7E71A /* SGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F01B18426A00C7E71A /* SGRequest.m */; };
 		B82303F41B18426A00C7E71A /* SGRequest+PicRef.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F21B18426A00C7E71A /* SGRequest+PicRef.m */; };
@@ -87,8 +86,6 @@
 		A49676111B1880C4001CA717 /* MCMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMapViewController.m; path = DataHandler/MCMapViewController.m; sourceTree = "<group>"; };
 		A49676121B1880C4001CA717 /* MCPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCPinAnnotation.h; path = DataHandler/MCPinAnnotation.h; sourceTree = "<group>"; };
 		A49676131B1880C4001CA717 /* MCPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPinAnnotation.m; path = DataHandler/MCPinAnnotation.m; sourceTree = "<group>"; };
-		A49676141B1880C4001CA717 /* MCPoiAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCPoiAnnotation.h; path = DataHandler/MCPoiAnnotation.h; sourceTree = "<group>"; };
-		A49676151B1880C4001CA717 /* MCPoiAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPoiAnnotation.m; path = DataHandler/MCPoiAnnotation.m; sourceTree = "<group>"; };
 		A49676191B188C5B001CA717 /* STPicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPicInfo.h; path = DataHandler/STPicInfo.h; sourceTree = "<group>"; };
 		A496761A1B188C5B001CA717 /* STPicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPicInfo.m; path = DataHandler/STPicInfo.m; sourceTree = "<group>"; };
 		B82303EF1B18426A00C7E71A /* SGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRequest.h; sourceTree = "<group>"; };
@@ -240,8 +237,6 @@
 				A49676111B1880C4001CA717 /* MCMapViewController.m */,
 				A49676121B1880C4001CA717 /* MCPinAnnotation.h */,
 				A49676131B1880C4001CA717 /* MCPinAnnotation.m */,
-				A49676141B1880C4001CA717 /* MCPoiAnnotation.h */,
-				A49676151B1880C4001CA717 /* MCPoiAnnotation.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -538,7 +533,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80D223D19CCFD590019A8EA /* TGCameraGrid.m in Sources */,
-				A49676181B1880C4001CA717 /* MCPoiAnnotation.m in Sources */,
 				A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */,
 				A49676021B1871DC001CA717 /* MCCache.m in Sources */,
 				A49676041B1871DC001CA717 /* MCDianpingMapResult.m in Sources */,

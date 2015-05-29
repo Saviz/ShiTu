@@ -30,6 +30,7 @@
 #import "TGCameraFilterView.h"
 #import "UIImage+CameraFilters.h"
 #import "SGRequest+PicRef.h"
+#import "STPicInfo.h"
 
 static NSString* const kTGCacheSatureKey = @"TGCacheSatureKey";
 static NSString* const kTGCacheCurveKey = @"TGCacheCurveKey";
@@ -40,8 +41,8 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
 @interface TGPhotoViewController ()
 
 @property(nonatomic, retain) NSString *uploadedUrl;
-@property(nonatomic, retain) NSString *longitude;
-@property(nonatomic, retain) NSString *lantitude;
+@property(nonatomic, retain) NSNumber *longitude;
+@property(nonatomic, retain) NSNumber *latitude;
 
 
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
@@ -143,12 +144,6 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     if ([_delegate respondsToSelector:@selector(cameraDidTakePhoto:)]) {
         _photo = _photoView.image;
        
-        if (_albumPhoto) {
-            [_delegate cameraDidSelectAlbumPhoto:_photo];
-        } else {
-            [_delegate cameraDidTakePhoto:_photo];
-        }
-
         return; //do not save photos
         ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
         TGAssetsLibrary *library = [TGAssetsLibrary defaultAssetsLibrary];
@@ -240,26 +235,39 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     NSData *imageData = UIImageJPEGRepresentation(image,0);
     SGRequest *request = [SGRequest SGGetImageRecResultURLWithImageData:imageData];
     [request startUploadData:imageData imagePath:@"pic_path" ByPostWithFinishAction:^(NSString *resultStr, NSError *error) {
-        self.uploadedUrl = resultStr;
+        self.uploadedUrl = [resultStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+        
+        STPicInfo *newInfo = [[STPicInfo alloc]init];
+        newInfo.url = self.uploadedUrl;
+
         if (_albumPhoto) {
-            //            [_delegate cameraDidSelectAlbumPhoto:_photo];
+//            [_delegate cameraDidSelectAlbumPhoto:_photo];
             
             ALAssetsLibrary *assetLibrary=[[ALAssetsLibrary alloc] init];
             [assetLibrary assetForURL:_path resultBlock:^(ALAsset *asset)
              {
                  ALAssetRepresentation *rep = [asset defaultRepresentation];
                  NSDictionary *GPS = rep.metadata[@"{GPS}"];
-                 self.longitude = GPS[@"longitude"];
-                 self.lantitude = GPS[@"lantitude"];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:@{@"uploadUrl":self.uploadedUrl?self.uploadedUrl:@"null", @"longitude":self.longitude?self.longitude:@"null", @"lantitude":self.lantitude?self.lantitude:@"null"}];
+                 
+                if (GPS[@"Latitude"] == nil) {
+                     //todo: switch to select map
+                  
+                 } else {
+                       [_delegate cameraDidSelectAlbumPhoto:_photo];
+                     newInfo.gps = CLLocationCoordinate2DMake([GPS[@"Longitude"] doubleValue], [GPS[@"Latitude"] doubleValue]);
+                 }
+
+                 
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:newInfo];
              }
-                         failureBlock:^(NSError *err) {
-                             [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:@{@"uploadUrl":self.uploadedUrl?self.uploadedUrl:@"null", @"longitude":self.longitude?self.longitude:@"null", @"lantitude":self.lantitude?self.lantitude:@"null"}];
-                         }];
+             failureBlock:^(NSError *err) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:newInfo];
+             }];
             
             
         } else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:@{@"uploadUrl":self.uploadedUrl?self.uploadedUrl:@"null", @"longitude":self.longitude?self.longitude:@"null", @"lantitude":self.lantitude?self.lantitude:@"null"}];
+            [_delegate cameraDidTakePhoto:_photo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot" object:newInfo];
         }
     }];
 }

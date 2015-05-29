@@ -8,7 +8,6 @@
 
 #import "MCMapViewController.h"
 #import "MCPinAnnotation.h"
-#import "MCPoiAnnotation.h"
 #import "MCGps.h"
 
 
@@ -91,16 +90,6 @@
             pin.annotation = annotation;
         }
         return pin;
-    }
-    if ([annotation isKindOfClass:[MCPoiAnnotation class]]){
-        MCPoiAnnotation *poiAnnotation = (MCPoiAnnotation *)annotation;
-        MCPoiAnnotationView *view = (MCPoiAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier: MapPoiReusedIdentifier];
-        if (view == nil) {
-            view = [poiAnnotation viewForAnnotation];
-        } else {
-            view.annotation = annotation;
-        }
-        return view;
     }
     return nil;
 }
