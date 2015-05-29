@@ -19,6 +19,14 @@
     CLLocationCoordinate2D gps;
 }
 
++ (instancetype)createMapViewPageWithImageUrl:(NSString *)imageUrl
+{
+    MCMapViewController *instance = [[MCMapViewController alloc] init];
+    instance.info = [[STPicInfo alloc] init];
+    instance.info.url = imageUrl;
+    return instance;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -30,7 +38,7 @@
     //NSLog(@"%f %f %f %f %f %f", c.longitude, c.latitude, c2.longitude, c2.latitude, c3.longitude, c3.latitude);
     
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.994104995623616, 116.33219413545702);
-    gps = center;
+    self.info.gps = center;
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, 250, 250);
     [map setRegion:region animated:NO];
@@ -98,7 +106,7 @@
 }
 
 - (void)loadPoiAt:(CLLocationCoordinate2D)gcj{
-    gps = [MCGps transformFromGCJToWGS:gcj];
+    self.info.gps = [MCGps transformFromGCJToWGS:gcj];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -112,12 +120,10 @@
 }
 
 - (void)doneFunc {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot"
-        object:@{
-                 @"uploadUrl":self.uploadedUrl?self.uploadedUrl:@"null",
-                 @"longitude":[[NSNumber numberWithDouble:gps.longitude] stringValue],
-                 @"lantitude":[[NSNumber numberWithDouble:gps.latitude] stringValue]
-        }];
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TGLocationInfoGot"
+            object:self.info];
+    }];
     
 }
 

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "STPicInfo.h"
 
 @interface MCMapViewController : UIViewController <MKMapViewDelegate>
 
-@property (nonatomic, retain) NSString* uploadedUrl;
+@property (nonatomic, retain) STPicInfo* info;
 
 @end

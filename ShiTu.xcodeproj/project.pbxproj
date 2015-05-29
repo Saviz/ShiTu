@@ -18,6 +18,7 @@
 		A49676161B1880C4001CA717 /* MCMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676111B1880C4001CA717 /* MCMapViewController.m */; };
 		A49676171B1880C4001CA717 /* MCPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676131B1880C4001CA717 /* MCPinAnnotation.m */; };
 		A49676181B1880C4001CA717 /* MCPoiAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676151B1880C4001CA717 /* MCPoiAnnotation.m */; };
+		A496761B1B188C5B001CA717 /* STPicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A496761A1B188C5B001CA717 /* STPicInfo.m */; };
 		B82303F31B18426A00C7E71A /* SGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F01B18426A00C7E71A /* SGRequest.m */; };
 		B82303F41B18426A00C7E71A /* SGRequest+PicRef.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F21B18426A00C7E71A /* SGRequest+PicRef.m */; };
 		B82304091B18433B00C7E71A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F71B18433B00C7E71A /* AFHTTPRequestOperation.m */; };
@@ -88,6 +89,8 @@
 		A49676131B1880C4001CA717 /* MCPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPinAnnotation.m; path = DataHandler/MCPinAnnotation.m; sourceTree = "<group>"; };
 		A49676141B1880C4001CA717 /* MCPoiAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCPoiAnnotation.h; path = DataHandler/MCPoiAnnotation.h; sourceTree = "<group>"; };
 		A49676151B1880C4001CA717 /* MCPoiAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPoiAnnotation.m; path = DataHandler/MCPoiAnnotation.m; sourceTree = "<group>"; };
+		A49676191B188C5B001CA717 /* STPicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPicInfo.h; path = DataHandler/STPicInfo.h; sourceTree = "<group>"; };
+		A496761A1B188C5B001CA717 /* STPicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPicInfo.m; path = DataHandler/STPicInfo.m; sourceTree = "<group>"; };
 		B82303EF1B18426A00C7E71A /* SGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRequest.h; sourceTree = "<group>"; };
 		B82303F01B18426A00C7E71A /* SGRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRequest.m; sourceTree = "<group>"; };
 		B82303F11B18426A00C7E71A /* SGRequest+PicRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SGRequest+PicRef.h"; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				A49675EF1B1871DC001CA717 /* MCCache.m */,
 				A49675F41B1871DC001CA717 /* MCGps.h */,
 				A49675F51B1871DC001CA717 /* MCGps.m */,
+				A49676191B188C5B001CA717 /* STPicInfo.h */,
+				A496761A1B188C5B001CA717 /* STPicInfo.m */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				F82C4AD619CA058E001CEA3C /* TGAssetImageFile.m in Sources */,
 				A496760B1B1871DC001CA717 /* MCSogouPicResult.m in Sources */,
 				F82C4ACF19CA050C001CEA3C /* TGAssetsLibrary.m in Sources */,
+				A496761B1B188C5B001CA717 /* STPicInfo.m in Sources */,
 				F861D60A19C604810077B642 /* TGCameraToggle.m in Sources */,
 				F80DC5A319E7FF9D00395FAD /* TGCameraFocusView.m in Sources */,
 				F835958419C72F3400CAE395 /* TGAlbum.m in Sources */,
