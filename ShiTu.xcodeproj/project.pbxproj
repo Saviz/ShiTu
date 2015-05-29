@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A49676011B1871DC001CA717 /* MCBaiduPicResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675ED1B1871DC001CA717 /* MCBaiduPicResult.m */; };
+		A49676021B1871DC001CA717 /* MCCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675EF1B1871DC001CA717 /* MCCache.m */; };
+		A49676041B1871DC001CA717 /* MCDianpingMapResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675F31B1871DC001CA717 /* MCDianpingMapResult.m */; };
+		A49676051B1871DC001CA717 /* MCGps.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675F51B1871DC001CA717 /* MCGps.m */; };
+		A49676091B1871DC001CA717 /* MCShitu.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675FA1B1871DC001CA717 /* MCShitu.m */; };
+		A496760A1B1871DC001CA717 /* MCShituViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675FC1B1871DC001CA717 /* MCShituViewController.m */; };
+		A496760B1B1871DC001CA717 /* MCSogouPicResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675FE1B1871DC001CA717 /* MCSogouPicResult.m */; };
+		A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676001B1871DC001CA717 /* NSString+URLEncoding.m */; };
 		B82303F31B18426A00C7E71A /* SGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F01B18426A00C7E71A /* SGRequest.m */; };
 		B82303F41B18426A00C7E71A /* SGRequest+PicRef.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F21B18426A00C7E71A /* SGRequest+PicRef.m */; };
 		B82304091B18433B00C7E71A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F71B18433B00C7E71A /* AFHTTPRequestOperation.m */; };
@@ -55,6 +63,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A49675EC1B1871DC001CA717 /* MCBaiduPicResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCBaiduPicResult.h; path = DataHandler/MCBaiduPicResult.h; sourceTree = "<group>"; };
+		A49675ED1B1871DC001CA717 /* MCBaiduPicResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCBaiduPicResult.m; path = DataHandler/MCBaiduPicResult.m; sourceTree = "<group>"; };
+		A49675EE1B1871DC001CA717 /* MCCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCCache.h; path = DataHandler/MCCache.h; sourceTree = "<group>"; };
+		A49675EF1B1871DC001CA717 /* MCCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCCache.m; path = DataHandler/MCCache.m; sourceTree = "<group>"; };
+		A49675F21B1871DC001CA717 /* MCDianpingMapResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCDianpingMapResult.h; path = DataHandler/MCDianpingMapResult.h; sourceTree = "<group>"; };
+		A49675F31B1871DC001CA717 /* MCDianpingMapResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDianpingMapResult.m; path = DataHandler/MCDianpingMapResult.m; sourceTree = "<group>"; };
+		A49675F41B1871DC001CA717 /* MCGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCGps.h; path = DataHandler/MCGps.h; sourceTree = "<group>"; };
+		A49675F51B1871DC001CA717 /* MCGps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCGps.m; path = DataHandler/MCGps.m; sourceTree = "<group>"; };
+		A49675F91B1871DC001CA717 /* MCShitu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCShitu.h; path = DataHandler/MCShitu.h; sourceTree = "<group>"; };
+		A49675FA1B1871DC001CA717 /* MCShitu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCShitu.m; path = DataHandler/MCShitu.m; sourceTree = "<group>"; };
+		A49675FB1B1871DC001CA717 /* MCShituViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCShituViewController.h; path = DataHandler/MCShituViewController.h; sourceTree = "<group>"; };
+		A49675FC1B1871DC001CA717 /* MCShituViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCShituViewController.m; path = DataHandler/MCShituViewController.m; sourceTree = "<group>"; };
+		A49675FD1B1871DC001CA717 /* MCSogouPicResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCSogouPicResult.h; path = DataHandler/MCSogouPicResult.h; sourceTree = "<group>"; };
+		A49675FE1B1871DC001CA717 /* MCSogouPicResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSogouPicResult.m; path = DataHandler/MCSogouPicResult.m; sourceTree = "<group>"; };
+		A49675FF1B1871DC001CA717 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "DataHandler/NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		A49676001B1871DC001CA717 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "DataHandler/NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		B82303EF1B18426A00C7E71A /* SGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRequest.h; sourceTree = "<group>"; };
 		B82303F01B18426A00C7E71A /* SGRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRequest.m; sourceTree = "<group>"; };
 		B82303F11B18426A00C7E71A /* SGRequest+PicRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SGRequest+PicRef.h"; sourceTree = "<group>"; };
@@ -155,6 +179,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4184F941B186FD900384FDF /* DataHandler */ = {
+			isa = PBXGroup;
+			children = (
+				A496760E1B1871F6001CA717 /* Fetcher */,
+				A496760D1B1871E2001CA717 /* Lib */,
+				A49675FB1B1871DC001CA717 /* MCShituViewController.h */,
+				A49675FC1B1871DC001CA717 /* MCShituViewController.m */,
+			);
+			name = DataHandler;
+			sourceTree = "<group>";
+		};
+		A496760D1B1871E2001CA717 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				A49675FF1B1871DC001CA717 /* NSString+URLEncoding.h */,
+				A49676001B1871DC001CA717 /* NSString+URLEncoding.m */,
+				A49675EE1B1871DC001CA717 /* MCCache.h */,
+				A49675EF1B1871DC001CA717 /* MCCache.m */,
+				A49675F41B1871DC001CA717 /* MCGps.h */,
+				A49675F51B1871DC001CA717 /* MCGps.m */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		A496760E1B1871F6001CA717 /* Fetcher */ = {
+			isa = PBXGroup;
+			children = (
+				A49675EC1B1871DC001CA717 /* MCBaiduPicResult.h */,
+				A49675ED1B1871DC001CA717 /* MCBaiduPicResult.m */,
+				A49675F21B1871DC001CA717 /* MCDianpingMapResult.h */,
+				A49675F31B1871DC001CA717 /* MCDianpingMapResult.m */,
+				A49675FD1B1871DC001CA717 /* MCSogouPicResult.h */,
+				A49675FE1B1871DC001CA717 /* MCSogouPicResult.m */,
+				A49675F91B1871DC001CA717 /* MCShitu.h */,
+				A49675FA1B1871DC001CA717 /* MCShitu.m */,
+			);
+			name = Fetcher;
+			sourceTree = "<group>";
+		};
 		B82303F51B18433B00C7E71A /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +267,7 @@
 		F82F8E7819C4EFE700A47148 = {
 			isa = PBXGroup;
 			children = (
+				A4184F941B186FD900384FDF /* DataHandler */,
 				B823F08F1B17074E00C7E71A /* CoreLocation.framework */,
 				F82F8EC519C4F29000A47148 /* Example */,
 				F82F8EE519C4F29500A47148 /* TGCameraViewController */,
@@ -409,6 +473,7 @@
 				"pt-BR",
 				de,
 				"zh-Hans",
+				"zh-CN",
 			);
 			mainGroup = F82F8E7819C4EFE700A47148;
 			productRefGroup = F82F8E8219C4EFE700A47148 /* Products */;
@@ -445,7 +510,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80D223D19CCFD590019A8EA /* TGCameraGrid.m in Sources */,
+				A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */,
+				A49676021B1871DC001CA717 /* MCCache.m in Sources */,
+				A49676041B1871DC001CA717 /* MCDianpingMapResult.m in Sources */,
 				B82303F31B18426A00C7E71A /* SGRequest.m in Sources */,
+				A49676091B1871DC001CA717 /* MCShitu.m in Sources */,
 				F861D63F19C669060077B642 /* TGCameraFocus.m in Sources */,
 				F8E72B4919C9B75900FF3AE5 /* TGCameraSlideUpView.m in Sources */,
 				F879167219C879DB000F8637 /* UIImage+CameraFilters.m in Sources */,
@@ -461,6 +530,7 @@
 				F861D61019C61E240077B642 /* TGCameraFlash.m in Sources */,
 				B823040E1B18433B00C7E71A /* AFURLConnectionOperation.m in Sources */,
 				F8B3E82719CDAEFC0070CEB2 /* TGCameraNavigationController.m in Sources */,
+				A49676051B1871DC001CA717 /* MCGps.m in Sources */,
 				F835958719C766F800CAE395 /* TGCameraShot.m in Sources */,
 				F80D223A19CCFAC30019A8EA /* TGCameraGridView.m in Sources */,
 				F897018219C7AF19004E6480 /* TGPhotoViewController.m in Sources */,
@@ -470,13 +540,16 @@
 				F8505F9E19C8AD7A00F89CA4 /* TGCameraFilterView.m in Sources */,
 				F82F8EDC19C4F29000A47148 /* AppDelegate.m in Sources */,
 				B823040F1B18433B00C7E71A /* AFURLRequestSerialization.m in Sources */,
+				A496760A1B1871DC001CA717 /* MCShituViewController.m in Sources */,
 				B82304111B18433B00C7E71A /* AFURLSessionManager.m in Sources */,
 				B823040D1B18433B00C7E71A /* AFSecurityPolicy.m in Sources */,
 				F82C4AD619CA058E001CEA3C /* TGAssetImageFile.m in Sources */,
+				A496760B1B1871DC001CA717 /* MCSogouPicResult.m in Sources */,
 				F82C4ACF19CA050C001CEA3C /* TGAssetsLibrary.m in Sources */,
 				F861D60A19C604810077B642 /* TGCameraToggle.m in Sources */,
 				F80DC5A319E7FF9D00395FAD /* TGCameraFocusView.m in Sources */,
 				F835958419C72F3400CAE395 /* TGAlbum.m in Sources */,
+				A49676011B1871DC001CA717 /* MCBaiduPicResult.m in Sources */,
 				B823040C1B18433B00C7E71A /* AFNetworkReachabilityManager.m in Sources */,
 				F861D61419C620E10077B642 /* TGCameraViewController.m in Sources */,
 			);
@@ -613,6 +686,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SGSpeechRecognizer,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/trunk/SGImageRecognition/SGImageRecognition/Utility/ThirdLib/Bugly_libstdc++",
 				);
 				INFOPLIST_FILE = Example/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -624,6 +699,12 @@
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SogouPassportSDK,
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/umeng,
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/ZBarSDK,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/KSCrash",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/mta",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SogouPassportSDK",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/umeng",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/ZBarSDK",
 				);
 				PRODUCT_NAME = ShiTu;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -639,6 +720,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SGSpeechRecognizer,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/trunk/SGImageRecognition/SGImageRecognition/Utility/ThirdLib/Bugly_libstdc++",
 				);
 				INFOPLIST_FILE = Example/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -650,6 +733,12 @@
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SogouPassportSDK,
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/umeng,
 					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/ZBarSDK,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/KSCrash",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/mta",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SogouPassportSDK",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/umeng",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/ZBarSDK",
 				);
 				PRODUCT_NAME = ShiTu;
 				TARGETED_DEVICE_FAMILY = "1,2";
