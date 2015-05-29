@@ -15,6 +15,9 @@
 		A496760A1B1871DC001CA717 /* MCShituViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675FC1B1871DC001CA717 /* MCShituViewController.m */; };
 		A496760B1B1871DC001CA717 /* MCSogouPicResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A49675FE1B1871DC001CA717 /* MCSogouPicResult.m */; };
 		A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676001B1871DC001CA717 /* NSString+URLEncoding.m */; };
+		A49676161B1880C4001CA717 /* MCMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676111B1880C4001CA717 /* MCMapViewController.m */; };
+		A49676171B1880C4001CA717 /* MCPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676131B1880C4001CA717 /* MCPinAnnotation.m */; };
+		A49676181B1880C4001CA717 /* MCPoiAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676151B1880C4001CA717 /* MCPoiAnnotation.m */; };
 		B82303F31B18426A00C7E71A /* SGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F01B18426A00C7E71A /* SGRequest.m */; };
 		B82303F41B18426A00C7E71A /* SGRequest+PicRef.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F21B18426A00C7E71A /* SGRequest+PicRef.m */; };
 		B82304091B18433B00C7E71A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F71B18433B00C7E71A /* AFHTTPRequestOperation.m */; };
@@ -79,6 +82,12 @@
 		A49675FE1B1871DC001CA717 /* MCSogouPicResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSogouPicResult.m; path = DataHandler/MCSogouPicResult.m; sourceTree = "<group>"; };
 		A49675FF1B1871DC001CA717 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "DataHandler/NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		A49676001B1871DC001CA717 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "DataHandler/NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		A49676101B1880C4001CA717 /* MCMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCMapViewController.h; path = DataHandler/MCMapViewController.h; sourceTree = "<group>"; };
+		A49676111B1880C4001CA717 /* MCMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCMapViewController.m; path = DataHandler/MCMapViewController.m; sourceTree = "<group>"; };
+		A49676121B1880C4001CA717 /* MCPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCPinAnnotation.h; path = DataHandler/MCPinAnnotation.h; sourceTree = "<group>"; };
+		A49676131B1880C4001CA717 /* MCPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPinAnnotation.m; path = DataHandler/MCPinAnnotation.m; sourceTree = "<group>"; };
+		A49676141B1880C4001CA717 /* MCPoiAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCPoiAnnotation.h; path = DataHandler/MCPoiAnnotation.h; sourceTree = "<group>"; };
+		A49676151B1880C4001CA717 /* MCPoiAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCPoiAnnotation.m; path = DataHandler/MCPoiAnnotation.m; sourceTree = "<group>"; };
 		B82303EF1B18426A00C7E71A /* SGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRequest.h; sourceTree = "<group>"; };
 		B82303F01B18426A00C7E71A /* SGRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRequest.m; sourceTree = "<group>"; };
 		B82303F11B18426A00C7E71A /* SGRequest+PicRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SGRequest+PicRef.h"; sourceTree = "<group>"; };
@@ -182,6 +191,7 @@
 		A4184F941B186FD900384FDF /* DataHandler */ = {
 			isa = PBXGroup;
 			children = (
+				A496760F1B1880B4001CA717 /* Map */,
 				A496760E1B1871F6001CA717 /* Fetcher */,
 				A496760D1B1871E2001CA717 /* Lib */,
 				A49675FB1B1871DC001CA717 /* MCShituViewController.h */,
@@ -216,6 +226,19 @@
 				A49675FA1B1871DC001CA717 /* MCShitu.m */,
 			);
 			name = Fetcher;
+			sourceTree = "<group>";
+		};
+		A496760F1B1880B4001CA717 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A49676101B1880C4001CA717 /* MCMapViewController.h */,
+				A49676111B1880C4001CA717 /* MCMapViewController.m */,
+				A49676121B1880C4001CA717 /* MCPinAnnotation.h */,
+				A49676131B1880C4001CA717 /* MCPinAnnotation.m */,
+				A49676141B1880C4001CA717 /* MCPoiAnnotation.h */,
+				A49676151B1880C4001CA717 /* MCPoiAnnotation.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		B82303F51B18433B00C7E71A /* AFNetworking */ = {
@@ -510,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80D223D19CCFD590019A8EA /* TGCameraGrid.m in Sources */,
+				A49676181B1880C4001CA717 /* MCPoiAnnotation.m in Sources */,
 				A496760C1B1871DC001CA717 /* NSString+URLEncoding.m in Sources */,
 				A49676021B1871DC001CA717 /* MCCache.m in Sources */,
 				A49676041B1871DC001CA717 /* MCDianpingMapResult.m in Sources */,
@@ -539,9 +563,11 @@
 				B823040B1B18433B00C7E71A /* AFHTTPSessionManager.m in Sources */,
 				F8505F9E19C8AD7A00F89CA4 /* TGCameraFilterView.m in Sources */,
 				F82F8EDC19C4F29000A47148 /* AppDelegate.m in Sources */,
+				A49676171B1880C4001CA717 /* MCPinAnnotation.m in Sources */,
 				B823040F1B18433B00C7E71A /* AFURLRequestSerialization.m in Sources */,
 				A496760A1B1871DC001CA717 /* MCShituViewController.m in Sources */,
 				B82304111B18433B00C7E71A /* AFURLSessionManager.m in Sources */,
+				A49676161B1880C4001CA717 /* MCMapViewController.m in Sources */,
 				B823040D1B18433B00C7E71A /* AFSecurityPolicy.m in Sources */,
 				F82C4AD619CA058E001CEA3C /* TGAssetImageFile.m in Sources */,
 				A496760B1B1871DC001CA717 /* MCSogouPicResult.m in Sources */,
