@@ -13,5 +13,6 @@
 @interface MCMapViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, retain) STPicInfo* info;
++ (instancetype)createMapViewPageWithImageUrl:(NSString *)imageUrl;
 
 @end

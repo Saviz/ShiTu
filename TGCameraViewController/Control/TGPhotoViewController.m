@@ -31,6 +31,7 @@
 #import "UIImage+CameraFilters.h"
 #import "SGRequest+PicRef.h"
 #import "STPicInfo.h"
+#import "MCMapViewController.h"
 
 static NSString* const kTGCacheSatureKey = @"TGCacheSatureKey";
 static NSString* const kTGCacheCurveKey = @"TGCacheCurveKey";
@@ -251,9 +252,11 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
                  
                 if (GPS[@"Latitude"] == nil) {
                      //todo: switch to select map
-                  
+                    MCMapViewController *map = [MCMapViewController createMapViewPageWithImageUrl:newInfo.url];
+                    [self.navigationController pushViewController:map animated:YES];
+                    return;
                  } else {
-                       [_delegate cameraDidSelectAlbumPhoto:_photo];
+                    [_delegate cameraDidSelectAlbumPhoto:_photo];
                      newInfo.gps = CLLocationCoordinate2DMake([GPS[@"Longitude"] doubleValue], [GPS[@"Latitude"] doubleValue]);
                  }
 
