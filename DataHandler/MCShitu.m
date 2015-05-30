@@ -8,22 +8,30 @@
 
 #import "MCShitu.h"
 #import "MCBaiduPicResult.h"
+#import "MCBaiduMoreResult.h"
 #import "MCSogouPicResult.h"
 #import "MCDianpingMapResult.h"
 
-@interface MCShitu ()<MCBaiduPicResultDelegate, MCSogouPicResultDelegate, MCDianpingMapResultDelegate>
+@interface MCShitu ()<MCBaiduPicResultDelegate, MCSogouPicResultDelegate, MCDianpingMapResultDelegate, MCBaiduMoreResultDelegate>
 @end
 @implementation MCShitu {
     NSArray *dianping;
     NSDictionary *baidu;
+    NSDictionary *baidum;
     NSDictionary *sogou;
     NSArray *keywords;
     NSUInteger done;
     MCDianpingMapResult *dp;
     MCBaiduPicResult *bd;
+    MCBaiduMoreResult *bm;
     MCSogouPicResult *sg;
     NSRegularExpression *regex1;
     NSRegularExpression *regex2;
+}
+
+- (void)doneWithMore:(NSDictionary *)info {
+    baidum = info;
+    [self isDone];
 }
 
 - (void)doneWithSimilars:(NSDictionary *)info {
@@ -50,15 +58,19 @@
 
 - (void)isDone {
     done += 1;
-    if (done > 2){
+    if (done > 3){
         NSMutableArray *dpArr = [NSMutableArray arrayWithCapacity:10];
         for (NSDictionary *dict in dianping) {
             [dpArr addObject:[[dict objectForKey:@"title"] stringByAppendingFormat:@";;;%@|||", [dict objectForKey:@"dish"]]];
         }
         //NSLog(@"dianping:%@", [dpArr componentsJoinedByString:@""]);
         
-        NSMutableArray *bdArr = [NSMutableArray arrayWithCapacity:[baidu count]];
+        NSMutableArray *bdArr = [NSMutableArray arrayWithCapacity:baidum.count+baidu.count];
         for (NSDictionary *dict in baidu) {
+            [bdArr addObject:[[dict objectForKey:@"fromPageTitle"] stringByAppendingFormat:@";;;%@|||", [dict objectForKey:@"textHost"]]];
+        }
+        
+        for (NSDictionary *dict in baidum) {
             [bdArr addObject:[[dict objectForKey:@"fromPageTitle"] stringByAppendingFormat:@";;;%@|||", [dict objectForKey:@"textHost"]]];
         }
         
@@ -96,6 +108,9 @@
         sg = [[MCSogouPicResult alloc] init];
         sg.delegate = self;
         
+        bm = [[MCBaiduMoreResult alloc] init];
+        bm.delegate = self;
+        
         NSError *error = nil;
         regex1 = [NSRegularExpression regularExpressionWithPattern:@"[;|]" options:0 error:&error];
         regex2 = [NSRegularExpression regularExpressionWithPattern:@"<.*?>" options:0 error:&error];
@@ -110,9 +125,11 @@
     baidu = nil;
     sogou = nil;
     keywords = nil;
+    baidum = nil;
     //[self.delegate doneWithShops:@"a" baidu:@"b" sogou:@"c"];
     [dp getInfoWithGPS:gps];
     [bd getPicInfoWithUrl:imageUrl];
     [sg getPicInfoWithUrl:imageUrl];
+    [bm getPicInfoWithUrl:imageUrl];
 }
 @end

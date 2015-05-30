@@ -70,12 +70,13 @@
 }
 
 - (void)doneWithShops:(NSString *)shops baidu:(NSString *)baidu sogou:(NSString *)sogou {
-    webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    NSUInteger height = self.navigationController.navigationBar.frame.size.height+20;
+    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://10.12.135.92/st/post.php"]];
     
-    NSString *postStr = [shops stringByAppendingFormat:@"%@\t%@", baidu, sogou];
+    NSString *postStr = [shops stringByAppendingFormat:@"=======================%@============%@", baidu, sogou];
     NSDictionary *params = @{@"body": postStr};
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -93,7 +94,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    //[self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 
