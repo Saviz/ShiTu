@@ -30,10 +30,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     loading1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2)];
-    [loading1 setBackgroundColor:[UIColor blackColor]];
+    [loading1 setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:loading1];
     loading2 = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2, self.view.bounds.size.width, self.view.bounds.size.height/2)];
-    [loading2 setBackgroundColor:[UIColor blackColor]];
+    [loading2 setBackgroundColor:[UIColor lightGrayColor]];
     [self.view addSubview:loading2];
     
     shitu = [[MCShitu alloc] init];
@@ -76,7 +76,7 @@
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90:3000/"]];
     
-    NSString *postStr = [shops stringByAppendingFormat:@"=======================%@============%@", baidu, sogou];
+    NSString *postStr = [shops stringByAppendingFormat:@"\t%@\t%@", baidu, sogou];
     NSDictionary *params = @{@"body": postStr};
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
