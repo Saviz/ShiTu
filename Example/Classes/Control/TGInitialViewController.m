@@ -174,6 +174,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLocationInfoGot:) name:@"TGLocationInfoGot" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onShotButtonClicked) name:@"MCReshotClicked" object:nil];
 }
 
 - (UIButton *) makeRoundButton:(float)radius WithImage:(UIImage *)image WithFrame:(CGRect)frame{

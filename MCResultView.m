@@ -98,6 +98,8 @@
 
 - (void)onReshotButtonClicked {
     [self.delegate didReshotButtonClick];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MCReshotClicked"
+                                                        object:nil];
 }
 
 @end
