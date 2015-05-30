@@ -83,26 +83,32 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     foodsData = [[NSMutableArray alloc]initWithCapacity:6];
     STPicInfo *info = [[STPicInfo alloc]init];
     
-    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
-    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"backgroundHeader"}];
+    info.gps = CLLocationCoordinate2DMake(39.9926133333333, 116.3263550000000);
+    info.url = @"http://img02.sogoucdn.com/app/a/100520146/F9F2ADD5EF305AF5F38637C04FF15A09";
+    [foodsData addObject:@{@"name":@"酸菜牛肉面", @"info":info, @"pic":@"backgroundHeader"}];
     
-    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
-    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"backgroundHeader"}];
     
-    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
-    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    info = [[STPicInfo alloc]init];
+    info.gps = CLLocationCoordinate2DMake(40.008486f, 116.354912f);
+    info.url = @"http://img01.sogoucdn.com/app/a/100520146/35FA31E95B7C6B90EDE4A7A31F3A596F";
+    [foodsData addObject:@{@"name":@"鸳鸯锅", @"info":info, @"pic":@"backgroundHeader"}];
     
-    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
-    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
-    
+    info = [[STPicInfo alloc]init];
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
     info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
     [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
     
+    info = [[STPicInfo alloc]init];
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    
+    info = [[STPicInfo alloc]init];
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    
+    info = [[STPicInfo alloc]init];
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
     info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
     [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
@@ -140,7 +146,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     [self.view addSubview:self.statusBarView];
     
     
-    self.backgroundView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 20, ScreenWidth, 562/2)];
+    self.backgroundView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0, ScreenWidth, 562/2)];
     self.backgroundView.image = [UIImage imageNamed:@"backgroundHeader"];
 //    self.backgroundView.contentMode = UIViewContentModeCenter;
     [self.view addSubview:self.backgroundView];
@@ -152,7 +158,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     foodTitle.image = [UIImage imageNamed:@"foodTitle"];
     [self.foodsImageView addSubview:foodTitle];
     
-    CGRect frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
+    CGRect frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2, ShotButtonRadius, ShotButtonRadius);
     self.shotButton = [self makeRoundButton:ShotButtonRadius WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
     [self.shotButton addTarget:self action:@selector(onShotButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.shotButton];
@@ -385,6 +391,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 
 - (UIImage *)addImage:(NSString *)picName WithName:(NSString *)name WithFrame:(CGRect )frame{
     UIImage *basicImage = [UIImage imageNamed:picName];
+//    [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]]
 
     //    UIImage *tiezhi = [UIImage imageNamed:@"Trips"];
     CGSize finalSize = frame.size;
@@ -395,7 +402,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 //    [tiezhi drawInRect:CGRectMake(100,100,tiezhiSize.width*2,tiezhiSize.height*2)];
     
     [[UIColor whiteColor] set];
-    [name drawInRect:CGRectMake(0, FoodButtonRadiu/2-10, FoodButtonRadiu, 80) withFont:[UIFont systemFontOfSize:20]];
+    [name drawInRect:CGRectMake(0, FoodButtonRadiu/2-10, FoodButtonRadiu, 80) withFont:[UIFont systemFontOfSize:15]];
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
