@@ -10,10 +10,11 @@
 #import "MCShitu.h"
 #import "MCResultView.h"
 #import "AFNetworking.h"
+#import "TGCameraNavigationController.h"
 
 #define NavigationHeight self.navigationController.navigationBar.frame.size.height+20
 
-@interface MCShituViewController ()<MCShituDelegate, UIWebViewDelegate>
+@interface MCShituViewController ()<MCShituDelegate, UIWebViewDelegate, MCResultViewDelegate>
 @end
 
 @implementation MCShituViewController{
@@ -116,11 +117,10 @@
             [loading1 removeFromSuperview];
             [loading2 removeFromSuperview];
         }];
-
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", [error localizedDescription]);
-        
+        [self.navigationController popViewControllerAnimated:NO];
     }];
     [op start];
     
@@ -164,6 +164,14 @@
 //    [self dismissViewControllerAnimated:NO completion:nil];
      [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+- (void)didSelectFoodNameResult:(NSString *)foodName {
+    NSLog(@"%@", foodName);
+}
+
+- (void)didReshotButtonClick {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end;
