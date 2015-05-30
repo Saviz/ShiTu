@@ -17,17 +17,19 @@
 @property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic, retain) UIView *contentView;
 @property (nonatomic, retain) UIView *reshotView;
-@property (nonatomic, retain) UIImageView *cameraView;
+@property (nonatomic, retain) UIButton *reshotButton;
 
 @end
 
-@implementation MCResultView
+@implementation MCResultView {
+    NSArray *_result;
+}
 
 - (void)dealloc{
     self.imageView = nil;
     self.contentView = nil;
     self.reshotView = nil;
-    self.cameraView = nil;
+    self.reshotButton = nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame WithURL:(NSString*)url WithResult:(NSArray *)result
@@ -42,6 +44,7 @@
         self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
         [self addSubview:self.imageView];
         
+        _result = result;
          NSInteger contentHeight = 50+ (ButtonHeight + 15) * [result count];
         if (result != nil) {
             self.contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenWidth/750*398+20, screenWidth, contentHeight)];
@@ -61,6 +64,8 @@
                 button.layer.cornerRadius = 10;
                 [button setTitle: result[i] forState: UIControlStateNormal];
                 [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                button.tag = i;
+                [button addTarget:self action:@selector(onButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
                 NSLog(@"%@", result[i]);
                 [self.contentView addSubview:button];
             }
@@ -74,24 +79,25 @@
         label1.text = @"没有找到？换个角度拍试试？";
         [self.reshotView addSubview:label1];
         
-        self.cameraView = [[UIImageView alloc]initWithFrame:CGRectMake((screenWidth - 180/2)/2, 40, 180/2 , 180/2)];
-        self.cameraView.image = [UIImage imageNamed:@"reshotCamera"];
-        [self.reshotView addSubview:self.cameraView];
+        self.reshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.reshotButton.frame = CGRectMake((screenWidth - 180/2)/2, 40, 180/2 , 180/2);
+        [self.reshotButton setImage:[UIImage imageNamed:@"reshotCamera"] forState:UIControlStateNormal];
+        self.reshotButton.clipsToBounds = YES;
+        self.reshotButton.layer.cornerRadius = 180/2/2.9f;
+        [self.reshotButton addTarget:self action:@selector(onReshotButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.reshotView addSubview:self.reshotButton];
     }
     return self;
 }
 
-- (UIButton *) makeRoundButton:(float)radius WithImage:(UIImage *)image WithFrame:(CGRect)frame{
-    UIButton *roundButton;
-    
-    roundButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [roundButton setImage:image forState:UIControlStateNormal];
-    roundButton.frame = frame;
-    roundButton.clipsToBounds = YES;
-    roundButton.layer.cornerRadius = radius/2.0f;
-    //    self.shotButton.layer.borderColor=[UIColor redColor].CGColor;
-    //    self.shotButton.layer.borderWidth=2.0f;
-    return roundButton;
+- (void)onButtonClicked:(id)sender {
+    NSInteger tag = [sender tag];
+    NSString *foodName = _result[tag];
+    [self.delegate didSelectFoodNameResult:foodName];
+}
+
+- (void)onReshotButtonClicked {
+    [self.delegate didReshotButtonClick];
 }
 
 @end

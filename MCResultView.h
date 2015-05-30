@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MCResultViewDelegate <NSObject>
+
+- (void) didSelectFoodNameResult:(NSString *)foodName;
+- (void) didReshotButtonClick;
+
+@end
+
 @interface MCResultView : UIView
 
+@property(nonatomic, weak)id<MCResultViewDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame WithURL:(NSString*)url WithResult:(NSArray *)result;
 
 @end
