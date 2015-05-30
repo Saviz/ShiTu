@@ -58,14 +58,9 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 
 @interface TGInitialViewController () <TGCameraDelegate>
 
-@property (strong, nonatomic) IBOutlet UIImageView *photoView;
 @property (strong, nonatomic) UIImageView *backgroundView;
 @property (strong, nonatomic) UIButton *shotButton;
 @property (strong, nonatomic) UIView *foodsImageView;
-
-//- (IBAction)takePhotoTapped;
-
-- (void)clearTapped;
 
 @end
 
@@ -83,6 +78,33 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     if (!self) {
         return nil;
     }
+    
+    foodsData = [[NSMutableArray alloc]initWithCapacity:6];
+    STPicInfo *info = [[STPicInfo alloc]init];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"backgroundHeader"}];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"backgroundHeader"}];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    
+    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
     
     return self;
 }
@@ -116,39 +138,33 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 //    self.backgroundView.contentMode = UIViewContentModeCenter;
     [self.view addSubview:self.backgroundView];
     
-    
-    CGRect frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
-    self.shotButton = [self makeRoundButton:ShotButtonRadius WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
-//    self.shotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.shotButton setImage:[UIImage imageNamed:@"shotButton"] forState:UIControlStateNormal];
-//    self.shotButton.frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
-//    self.shotButton.clipsToBounds = YES;
-//    self.shotButton.layer.cornerRadius = ShotButtonRadius/2.0f;
-//    self.shotButton.layer.borderColor=[UIColor redColor].CGColor;
-//    self.shotButton.layer.borderWidth=2.0f;
-    [self.shotButton addTarget:self action:@selector(onShotButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.shotButton];
-
-    self.foodsImageView = [[UIView alloc]initWithFrame:CGRectMake(0, (562+ShotButtonRadius)/2+20, ScreenWidth, ScreenHeight - (562+ShotButtonRadius)/2)];
+    self.foodsImageView = [[UIView alloc]initWithFrame:CGRectMake(0, (562+ShotButtonRadius)/2, ScreenWidth, ScreenHeight - (562+ShotButtonRadius)/2)];
     [self.view addSubview:self.foodsImageView];
     
     UIImageView *foodTitle = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 138/2+10)];
     foodTitle.image = [UIImage imageNamed:@"foodTitle"];
     [self.foodsImageView addSubview:foodTitle];
     
+    CGRect frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
+    self.shotButton = [self makeRoundButton:ShotButtonRadius WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
+    [self.shotButton addTarget:self action:@selector(onShotButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.shotButton];
+    
+
+    
     UIButton *foodButton;
-    for (int i = 0; i < 3; i++) {
-        frame = CGRectMake((50+i*(FoodButtonRadiu+20)), 138/2+10, FoodButtonRadiu, FoodButtonRadiu);
-        foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
-        [self.foodsImageView addSubview:foodButton];
-    }
+    UIImage *foodImage;
+    float margin = 40.f;
+    float offset = ((ScreenWidth - margin*2) - (FoodButtonRadiu*3))/2;
     
-    for (int i = 0; i < 3; i++) {
-        frame = CGRectMake((50+i*(FoodButtonRadiu+20)), 138/2+30 + FoodButtonRadiu, FoodButtonRadiu, FoodButtonRadiu);
-        foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
+    for (int i = 0; i < 6; i++) {
+        frame = CGRectMake((margin+(i%3)*(FoodButtonRadiu+offset)), 138/2 + ((i<=2)?0:(10+FoodButtonRadiu)), FoodButtonRadiu, FoodButtonRadiu);
+        foodImage = [self addImage:foodsData[i][@"pic"] WithName:foodsData[i][@"name"] WithFrame:frame];
+        foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:foodImage WithFrame:frame];
+        foodButton.tag = i;
         [self.foodsImageView addSubview:foodButton];
+        [foodButton addTarget:self action:@selector(onFoodButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLocationInfoGot:) name:@"TGLocationInfoGot" object:nil];
 }
@@ -193,6 +209,14 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+- (void) onFoodButtonClicked:(id) sender{
+    NSLog(@"%ld", (long)[sender tag]);
+    NSInteger tag = [sender tag];
+    STPicInfo *info = [foodsData objectAtIndex:tag][@"info"];
+    MCShituViewController *controller = [MCShituViewController createWebViewPageWithGPS:info.gps andImageUrl:info.url];
+    [self.navigationController pushViewController:controller animated:NO];
+
+}
 
 #pragma mark location manager
 
@@ -346,14 +370,29 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 #pragma mark -
 #pragma mark - Private methods
 
-- (void)clearTapped
-{
-    _photoView.image = nil;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (UIImage *)addImage:(NSString *)picName WithName:(NSString *)name WithFrame:(CGRect )frame{
+    UIImage *basicImage = [UIImage imageNamed:picName];
+
+    //    UIImage *tiezhi = [UIImage imageNamed:@"Trips"];
+    CGSize finalSize = frame.size;
+//    CGSize tiezhiSize = [tiezhi size];
+    
+    UIGraphicsBeginImageContext(finalSize);
+    [basicImage drawInRect:CGRectMake(0,0,finalSize.width,finalSize.height)];
+//    [tiezhi drawInRect:CGRectMake(100,100,tiezhiSize.width*2,tiezhiSize.height*2)];
+    
+    [[UIColor whiteColor] set];
+    [name drawInRect:CGRectMake(0, FoodButtonRadiu/2-10, FoodButtonRadiu, 80) withFont:[UIFont systemFontOfSize:20]];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end
