@@ -40,16 +40,19 @@
     shitu.delegate = self;
     [shitu fetchWithGPS:self.gps andImage:self.imageUrl];
     
+    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 100, 50)];
+    [button addTarget:self action:@selector(doneFunc)forControlEvents:UIControlEventTouchUpInside];
     
-    //self.navigationController.navigationBarHidden = NO;
-    //self.navigationController.navigationBar.translucent = NO;
-    UIBarButtonItem * doneButton =
-    [[UIBarButtonItem alloc]
-     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-     target:self
-     action:@selector( doneFunc ) ];
-    
-    self.navigationController.navigationItem.rightBarButtonItem = doneButton;
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+    [label setFont:[UIFont fontWithName:@"Arial-BoldMT" size:20]];
+    [label setText:@"返回"];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [button addSubview:label];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+ 
 }
 
 - (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
@@ -77,6 +80,7 @@
 }
 
 - (void)doneWithShops:(NSString *)shops baidu:(NSString *)baidu sogou:(NSString *)sogou {
+    
     NSUInteger height = self.navigationController.navigationBar.frame.size.height+20;
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
@@ -123,10 +127,10 @@
 }
 
 - (void)doneFunc {
-    [self dismissViewControllerAnimated:NO completion:^(void){
-        
-    }];
-    
+//    NSLog(@"done...");
+//    [self dismissViewControllerAnimated:NO completion:nil];
+     [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 @end;
