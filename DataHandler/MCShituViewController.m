@@ -74,7 +74,7 @@
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://10.12.135.92/st/post.php"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90:3000/"]];
     
     NSString *postStr = [shops stringByAppendingFormat:@"=======================%@============%@", baidu, sogou];
     NSDictionary *params = @{@"body": postStr};
