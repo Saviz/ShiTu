@@ -4,6 +4,7 @@
 <dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>YES</string>

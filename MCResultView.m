@@ -35,7 +35,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.clipsToBounds = YES;
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithRed:240/255.0 green:239/255.0 blue:244/255.0 alpha:1];
         
         float screenWidth = frame.size.width;
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth/750*398)];
@@ -48,7 +48,7 @@
             [self addSubview: self.contentView];
             
             UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, screenWidth, 30)];
-            label1.tintColor = oColor;
+//            label1.textColor = oColor;
             label1.text = @"您想找的菜可能是：";
             [self.contentView addSubview:label1];
             
@@ -60,7 +60,7 @@
                 button.clipsToBounds = YES;
                 button.layer.cornerRadius = 10;
                 [button setTitle: result[i] forState: UIControlStateNormal];
-                [button setTitleColor:oColor forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 NSLog(@"%@", result[i]);
                 [self.contentView addSubview:button];
             }
@@ -70,7 +70,7 @@
         self.reshotView = [[UIView alloc]initWithFrame:CGRectMake(0, screenWidth/750*398+20+contentHeight, screenWidth, 100)];
         [self addSubview:self.reshotView];
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, screenWidth, 30)];
-        label1.tintColor = oColor;
+//        label1.textColor = oColor;
         label1.text = @"没有找到？换个角度拍试试？";
         [self.reshotView addSubview:label1];
         
