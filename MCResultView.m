@@ -96,6 +96,7 @@
     NSInteger tag = [sender tag];
     NSString *foodName = _result[tag];
     [self.delegate didSelectFoodNameResult:foodName];
+    [self removeFromSuperview];
 }
 
 - (void)onReshotButtonClicked {

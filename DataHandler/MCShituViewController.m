@@ -11,6 +11,7 @@
 #import "MCResultView.h"
 #import "AFNetworking.h"
 #import "TGCameraNavigationController.h"
+#import "NSString+URLEncoding.h"
 
 #define NavigationHeight self.navigationController.navigationBar.frame.size.height+20
 
@@ -109,6 +110,7 @@
         NSLog(@"%@", response);
         CGRect frame =  CGRectMake(0, NavigationHeight, self.view.bounds.size.width, self.view.bounds.size.height - NavigationHeight);
         MCResultView *resultView =[[MCResultView alloc]initWithFrame:frame WithURL:self.imageUrl WithResult:[response componentsSeparatedByString:@","]];
+        resultView.delegate = self;
         [self.view insertSubview:resultView atIndex:0 ];
         [UIView animateWithDuration:0.5f animations:^(void){
             loading1.frame = CGRectMake(0, 0, loading1.frame.size.width, 0);
@@ -125,18 +127,6 @@
     [op start];
     
     return;
-    
-    NSUInteger height = NavigationHeight;
-    
-    
-    
-
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
-    webview.delegate = self;
-    
-    
-    [webview loadRequest:request];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -168,6 +158,21 @@
 
 - (void)didSelectFoodNameResult:(NSString *)foodName {
     NSLog(@"%@", foodName);
+    NSUInteger height = NavigationHeight;
+
+    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
+    webview.delegate = self;
+    
+    NSString *url = [NSString stringWithFormat:@"http://10.11.210.13:3000/dish?name=%@&imgurl=%@", [foodName urlEncodeUsingEncoding:NSUTF8StringEncoding], [self.imageUrl urlEncodeUsingEncoding:NSUTF8StringEncoding]];
+    //url = @"http://www.sogou.com/";
+    NSLog(@"%@", url);
+    NSURL *nu = [[NSURL alloc] initWithString:url];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:nu];
+    
+    
+    [webview loadRequest:request];
+    [self.view addSubview:webview];
+
 }
 
 - (void)didReshotButtonClick {

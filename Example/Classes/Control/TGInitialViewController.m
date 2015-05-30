@@ -97,7 +97,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
     info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
     [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
-    
+    /*
     info = [[STPicInfo alloc]init];
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
     info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
@@ -111,7 +111,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     info = [[STPicInfo alloc]init];
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
     info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];*/
     
     return self;
 }
@@ -170,7 +170,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     float margin = 40.f;
     float offset = ((ScreenWidth - margin*2) - (FoodButtonRadiu*3))/2;
     
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < [foodsData count]; i++) {
         frame = CGRectMake((margin+(i%3)*(FoodButtonRadiu+offset)), 138/2 + ((i<=2)?0:(10+FoodButtonRadiu)), FoodButtonRadiu, FoodButtonRadiu);
         foodImage = [self addImage:foodsData[i][@"pic"] WithName:foodsData[i][@"name"] WithFrame:frame];
         foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:foodImage WithFrame:frame];
@@ -297,7 +297,10 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     }
     // The user has not enabled any location services. Request background authorization.
     else if (status == kCLAuthorizationStatusNotDetermined) {
-        [_locationManager requestAlwaysAuthorization];
+        if([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            [_locationManager requestAlwaysAuthorization];
+        }
+        //[_locationManager requestAlwaysAuthorization];
     }
 }
 
