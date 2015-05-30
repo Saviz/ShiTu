@@ -254,7 +254,7 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
                   
                  } else {
                        [_delegate cameraDidSelectAlbumPhoto:_photo];
-                     newInfo.gps = CLLocationCoordinate2DMake([GPS[@"Longitude"] doubleValue], [GPS[@"Latitude"] doubleValue]);
+                     newInfo.gps = CLLocationCoordinate2DMake([GPS[@"Latitude"] doubleValue], [GPS[@"Longitude"] doubleValue]);
                  }
 
                  
