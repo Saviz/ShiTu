@@ -76,7 +76,7 @@
         
         NSString *baiduStr1 = [keywords componentsJoinedByString:@";;;"];
         NSString *baiduStr2 = [bdArr componentsJoinedByString:@""];
-        NSString *baiduStr = [self pureString:[baiduStr1 stringByAppendingFormat:@"  %@", baiduStr2]];
+        NSString *baiduStr = [self pureString:[baiduStr1 stringByAppendingFormat:@"\t%@", baiduStr2]];
         NSString *convertedString = [baiduStr mutableCopy];
         
         CFStringRef transform = CFSTR("Any-Hex/Java");

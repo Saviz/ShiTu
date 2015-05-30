@@ -43,6 +43,13 @@
     
     //self.navigationController.navigationBarHidden = NO;
     //self.navigationController.navigationBar.translucent = NO;
+    UIBarButtonItem * doneButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+     target:self
+     action:@selector( doneFunc ) ];
+    
+    self.navigationController.navigationItem.rightBarButtonItem = doneButton;
 }
 
 - (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
@@ -77,6 +84,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90:3000/"]];
     
     NSString *postStr = [shops stringByAppendingFormat:@"\t%@\t%@", baidu, sogou];
+    NSLog(@"%@", postStr);
     NSDictionary *params = @{@"body": postStr};
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -108,6 +116,13 @@
     } completion:^(BOOL finished){
         [loading1 removeFromSuperview];
         [loading2 removeFromSuperview];
+    }];
+    
+}
+
+- (void)doneFunc {
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        
     }];
     
 }
