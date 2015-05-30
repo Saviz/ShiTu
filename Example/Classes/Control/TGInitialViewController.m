@@ -61,6 +61,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
 @property (strong, nonatomic) UIImageView *backgroundView;
 @property (strong, nonatomic) UIButton *shotButton;
 @property (strong, nonatomic) UIView *foodsImageView;
+@property (strong, nonatomic) UIView *statusBarView;
 
 @end
 
@@ -114,6 +115,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     self.backgroundView = nil;
     self.shotButton = nil;
     self.foodsImageView = nil;
+    self.statusBarView = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -133,6 +135,11 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
      _locationManager = [[CLLocationManager alloc] init];
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    self.statusBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+    self.statusBarView.backgroundColor = [UIColor colorWithRed:236/255.0 green:130/255.0 blue:72/255.0 alpha:1];
+    [self.view addSubview:self.statusBarView];
+    
+    
     self.backgroundView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 20, ScreenWidth, 562/2)];
     self.backgroundView.image = [UIImage imageNamed:@"backgroundHeader"];
 //    self.backgroundView.contentMode = UIViewContentModeCenter;
