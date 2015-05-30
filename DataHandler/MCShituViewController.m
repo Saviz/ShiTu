@@ -116,6 +116,7 @@
             loading1.frame = CGRectMake(0, 0, loading1.frame.size.width, 0);
             loading2.frame = CGRectMake(0, self.view.bounds.size.height, loading2.frame.size.width, 0);
         } completion:^(BOOL finished){
+            self.navigationController.navigationBar.hidden = NO;
             [loading1 removeFromSuperview];
             [loading2 removeFromSuperview];
         }];
@@ -130,7 +131,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
+    
 
 //    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];

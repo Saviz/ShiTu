@@ -94,7 +94,7 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     [foodsData addObject:@{@"name":@"", @"info":info, @"pic":@"img1"}];
     
     info = [[STPicInfo alloc]init];
-    info.gps = CLLocationCoordinate2DMake(40.0084877014160f, 116.3549118041992f);
+    info.gps = CLLocationCoordinate2DMake(39.9926133333333, 116.3263550000000);
     info.url = @"http://img02.sogoucdn.com/app/a/100520146/64228BAF6994B7BB4F352D725C7A8AFC";
     [foodsData addObject:@{@"name":@"", @"info":info, @"pic":@"img2"}];
     /*
