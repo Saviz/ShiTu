@@ -9,6 +9,7 @@
 #import "MCShituViewController.h"
 #import "MCShitu.h"
 #import "MCResultView.h"
+#import "AFNetworking.h"
 
 #define NavigationHeight self.navigationController.navigationBar.frame.size.height+20
 
@@ -32,13 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    CGRect frame =  CGRectMake(0, NavigationHeight, self.view.bounds.size.width, self.view.bounds.size.height - NavigationHeight);
-    MCResultView *resultView =[[MCResultView alloc]initWithFrame:frame WithURL:@"http://img03.sogoucdn.com/app/a/100520146/F169CB70538561C7295AA9774BB8923C" WithResult:@[@"麻辣香锅", @"海底捞", @"哈哈"]];
-    [self.view addSubview:resultView];
-    
-    return;
-    
     
     loading1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2)];
     [loading1 setBackgroundColor:[UIColor whiteColor]];
@@ -92,16 +86,46 @@
 }
 
 - (void)doneWithShops:(NSString *)shops baidu:(NSString *)baidu sogou:(NSString *)sogou {
-    
-    NSUInteger height = NavigationHeight;
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
-    webview.delegate = self;
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90:3000/"]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
     
     NSString *postStr = [shops stringByAppendingFormat:@"\t%@\t%@", baidu, sogou];
     NSLog(@"%@", postStr);
     NSDictionary *params = @{@"body": postStr};
+    
+    [manager
+     POST:@"http://123.126.68.90:3000/"
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         NSLog(@"%@", response);
+         CGRect frame =  CGRectMake(0, NavigationHeight, self.view.bounds.size.width, self.view.bounds.size.height - NavigationHeight);
+         MCResultView *resultView =[[MCResultView alloc]initWithFrame:frame WithURL:self.imageUrl WithResult:[response componentsSeparatedByString:@","]];
+         [self.view insertSubview:resultView atIndex:0 ];
+         [UIView animateWithDuration:0.5f animations:^(void){
+             loading1.frame = CGRectMake(0, 0, loading1.frame.size.width, 0);
+             loading2.frame = CGRectMake(0, self.view.bounds.size.height, loading2.frame.size.width, 0);
+         } completion:^(BOOL finished){
+             [loading1 removeFromSuperview];
+             [loading2 removeFromSuperview];
+         }];
+     }
+     failure:nil
+    ];
+    return;
+    
+    NSUInteger height = NavigationHeight;
+    
+    
+    
+
+    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
+    webview.delegate = self;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@""]];
+    
+    
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
@@ -128,13 +152,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view insertSubview:webview atIndex:0];
-    [UIView animateWithDuration:0.5f animations:^(void){
-        loading1.frame = CGRectMake(0, 0, loading1.frame.size.width, 0);
-        loading2.frame = CGRectMake(0, self.view.bounds.size.height, loading2.frame.size.width, 0);
-    } completion:^(BOOL finished){
-        [loading1 removeFromSuperview];
-        [loading2 removeFromSuperview];
-    }];
+    
     
 }
 

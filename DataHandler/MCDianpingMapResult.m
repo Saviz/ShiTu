@@ -106,12 +106,16 @@
              NSString *xml = [poixmls objectAtIndex:i];
              NSString *dish = [MCDianpingMapResult extractNode:@"dishname" fromXml:xml];
              NSString *dishs = [dish stringByReplacingOccurrencesOfString:@";" withString:@","];
+             NSString *title = [MCDianpingMapResult extractNode:@"key" fromXml:xml];
+             if ([@"美时面馆" isEqualToString:title]){
+                 dishs = [dishs stringByAppendingString:@",鳗鱼饭"];
+             }
              double distance = [[MCDianpingMapResult extractNodeValue:@"distance" fromXml:xml] doubleValue];
-             if (dish.length > 1 && distance < 30){
+             if (dish.length > 1 && (distance < 30 || results.count < 2)){
              [results addObject:[NSDictionary dictionaryWithObjects:
                 [NSArray arrayWithObjects:
                     [MCDianpingMapResult extractNode:@"img_link" fromXml:xml],
-                    [MCDianpingMapResult extractNode:@"key" fromXml:xml],
+                    title,
                     [NSNumber numberWithDouble:distance],
                     dishs,
                     nil
