@@ -13,12 +13,57 @@
 #import "STPicInfo.h"
 #import "MCMapViewController.h"
 
+#define ShotButtonRadius 207.f
+#define FoodButtonRadiu 85.f
+
+#define GBKEncoding CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000
+#define BUILD_BASE_IOS7 NO
+#else
+#define BUILD_BASE_IOS7 YES
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
+int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
+#else
+int bitmapInfo = kCGImageAlphaPremultipliedLast;
+#endif
+
+#define GBKEncoding CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+
+#define ShouleAdaptForiOS7  (BUILD_BASE_IOS7 && [UIDevice currentDevice].systemVersion.floatValue > 6.99f)
+#define isiOS8 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1)
+#define isiOS7 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1 && NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1)
+#define isiOS6 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_5_1 && NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)
+
+
+#define isRetina4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define NavigationBarHeight (44.0f)
+#define StatusBarHeight (isiOS7?20.0f:0.0f)
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define ScreenWidth ([UIScreen mainScreen].bounds.size.width)
+#define ScreenHeight ([UIScreen mainScreen].bounds.size.height)
+
+#define ScreenFactor ([UIScreen mainScreen].bounds.size.width/320.0)
+
+#define SGFontWithSize(f)  ([UIFont fontWithName:@"FZLTHK--GBK1-0" size:(CGFloat)(f)])
+
+#define SGScaleWidth  (ScreenWidth/320)
+#define SGScaleHeight (ScreenHeight/568)
+
+
 @interface TGInitialViewController () <TGCameraDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
+@property (strong, nonatomic) UIImageView *backgroundView;
+@property (strong, nonatomic) UIButton *shotButton;
+@property (strong, nonatomic) UIView *foodsImageView;
 
-
-- (IBAction)takePhotoTapped;
+//- (IBAction)takePhotoTapped;
 
 - (void)clearTapped;
 
@@ -28,42 +73,100 @@
 
 @implementation TGInitialViewController {
     CLLocationManager *_locationManager;
-    
     BOOL _updatingLocation;
     NSError *_lastLocationError;
-    
-    
+    NSMutableArray *foodsData;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if ((self = [super initWithCoder:aDecoder])) {
-        _locationManager = [[CLLocationManager alloc] init];
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (!self) {
+        return nil;
     }
-    return  self;
+    
+    return self;
+}
+
+- (void)dealloc{
+    self.location = nil;
+    self.backgroundView = nil;
+    self.shotButton = nil;
+    self.foodsImageView = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
     [self startLocationManager];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self stopLocationManager];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     _locationManager = [[CLLocationManager alloc] init];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    self.backgroundView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 20, ScreenWidth, 562/2)];
+    self.backgroundView.image = [UIImage imageNamed:@"backgroundHeader"];
+//    self.backgroundView.contentMode = UIViewContentModeCenter;
+    [self.view addSubview:self.backgroundView];
     
     
-    [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
+    CGRect frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
+    self.shotButton = [self makeRoundButton:ShotButtonRadius WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
+//    self.shotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.shotButton setImage:[UIImage imageNamed:@"shotButton"] forState:UIControlStateNormal];
+//    self.shotButton.frame = CGRectMake((ScreenWidth - ShotButtonRadius)/2 , (562-ShotButtonRadius)/2+20, ShotButtonRadius, ShotButtonRadius);
+//    self.shotButton.clipsToBounds = YES;
+//    self.shotButton.layer.cornerRadius = ShotButtonRadius/2.0f;
+//    self.shotButton.layer.borderColor=[UIColor redColor].CGColor;
+//    self.shotButton.layer.borderWidth=2.0f;
+    [self.shotButton addTarget:self action:@selector(onShotButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.shotButton];
+
+    self.foodsImageView = [[UIView alloc]initWithFrame:CGRectMake(0, (562+ShotButtonRadius)/2+20, ScreenWidth, ScreenHeight - (562+ShotButtonRadius)/2)];
+    [self.view addSubview:self.foodsImageView];
     
-    _photoView.clipsToBounds = YES;
+    UIImageView *foodTitle = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 138/2+10)];
+    foodTitle.image = [UIImage imageNamed:@"foodTitle"];
+    [self.foodsImageView addSubview:foodTitle];
     
-    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                 target:self
-                                                                                 action:@selector(clearTapped)];
+    UIButton *foodButton;
+    for (int i = 0; i < 3; i++) {
+        frame = CGRectMake((50+i*(FoodButtonRadiu+20)), 138/2+10, FoodButtonRadiu, FoodButtonRadiu);
+        foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
+        [self.foodsImageView addSubview:foodButton];
+    }
     
-    self.navigationItem.rightBarButtonItem = clearButton;
+    for (int i = 0; i < 3; i++) {
+        frame = CGRectMake((50+i*(FoodButtonRadiu+20)), 138/2+30 + FoodButtonRadiu, FoodButtonRadiu, FoodButtonRadiu);
+        foodButton = [self makeRoundButton:FoodButtonRadiu WithImage:[UIImage imageNamed:@"shotButton"] WithFrame:frame];
+        [self.foodsImageView addSubview:foodButton];
+    }
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLocationInfoGot:) name:@"TGLocationInfoGot" object:nil];
 }
 
+- (UIButton *) makeRoundButton:(float)radius WithImage:(UIImage *)image WithFrame:(CGRect)frame{
+    UIButton *roundButton;
+    
+    roundButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [roundButton setImage:image forState:UIControlStateNormal];
+    roundButton.frame = frame;
+    roundButton.clipsToBounds = YES;
+    roundButton.layer.cornerRadius = radius/2.0f;
+    //    self.shotButton.layer.borderColor=[UIColor redColor].CGColor;
+    //    self.shotButton.layer.borderWidth=2.0f;
+    return roundButton;
+}
+
+#pragma mark actions and buttons
 - (void) onLocationInfoGot:(NSNotification*)notification {
     if ([notification.name isEqualToString:@"TGLocationInfoGot"]){
         NSLog(@"%@" , notification.object);
@@ -83,19 +186,15 @@
         MCShituViewController *controller = [MCShituViewController createWebViewPageWithGPS:info.gps andImageUrl:info.url];
         [self.navigationController pushViewController:controller animated:NO];
     }
-//    NSLog(@"%@, %@, %@", self.uploadedUrl, self.latitude, self.longitude);
-    
 }
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    self.location = nil;
+- (void) onShotButtonClicked {
+    TGCameraNavigationController *navigationController = [TGCameraNavigationController newWithCameraDelegate:self];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [self stopLocationManager];
-}
+#pragma mark location manager
 
 - (void) stopLocationManager {
     if (_updatingLocation) {
@@ -206,11 +305,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark -
 #pragma mark - TGCameraDelegate required
 
@@ -250,20 +344,16 @@
 }
 
 #pragma mark -
-#pragma mark - Actions
-
-- (IBAction)takePhotoTapped
-{    
-    TGCameraNavigationController *navigationController = [TGCameraNavigationController newWithCameraDelegate:self];
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
-#pragma mark -
 #pragma mark - Private methods
 
 - (void)clearTapped
 {
     _photoView.image = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end
