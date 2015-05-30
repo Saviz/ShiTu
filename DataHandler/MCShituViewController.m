@@ -8,6 +8,9 @@
 
 #import "MCShituViewController.h"
 #import "MCShitu.h"
+#import "MCResultView.h"
+
+#define NavigationHeight self.navigationController.navigationBar.frame.size.height+20
 
 @interface MCShituViewController ()<MCShituDelegate, UIWebViewDelegate>
 @end
@@ -29,6 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect frame =  CGRectMake(0, NavigationHeight, self.view.bounds.size.width, self.view.bounds.size.height - NavigationHeight);
+    MCResultView *resultView =[[MCResultView alloc]initWithFrame:frame WithURL:@"http://img03.sogoucdn.com/app/a/100520146/F169CB70538561C7295AA9774BB8923C" WithResult:@[@"麻辣香锅", @"海底捞", @"哈哈"]];
+    [self.view addSubview:resultView];
+    
+    return;
+    
+    
     loading1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2)];
     [loading1 setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:loading1];
@@ -45,8 +56,9 @@
     [button addTarget:self action:@selector(doneFunc)forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+    label.tag = 111;
     [label setFont:[UIFont fontWithName:@"Arial-BoldMT" size:20]];
-    [label setText:@"返回"];
+    [label setText:@"< 返回"];
     [label setTextColor:[UIColor whiteColor]];
     [label setBackgroundColor:[UIColor clearColor]];
     [button addSubview:label];
@@ -81,7 +93,7 @@
 
 - (void)doneWithShops:(NSString *)shops baidu:(NSString *)baidu sogou:(NSString *)sogou {
     
-    NSUInteger height = self.navigationController.navigationBar.frame.size.height+20;
+    NSUInteger height = NavigationHeight;
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
     

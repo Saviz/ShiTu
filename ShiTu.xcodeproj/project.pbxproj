@@ -19,6 +19,7 @@
 		A49676171B1880C4001CA717 /* MCPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A49676131B1880C4001CA717 /* MCPinAnnotation.m */; };
 		A496761B1B188C5B001CA717 /* STPicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A496761A1B188C5B001CA717 /* STPicInfo.m */; };
 		A4EB8F541B195398007142A4 /* MCBaiduMoreResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB8F531B195398007142A4 /* MCBaiduMoreResult.m */; };
+		B81635871B19B2B600CF69C9 /* MCResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = B81635861B19B2B600CF69C9 /* MCResultView.m */; };
 		B82303F31B18426A00C7E71A /* SGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F01B18426A00C7E71A /* SGRequest.m */; };
 		B82303F41B18426A00C7E71A /* SGRequest+PicRef.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F21B18426A00C7E71A /* SGRequest+PicRef.m */; };
 		B82304091B18433B00C7E71A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B82303F71B18433B00C7E71A /* AFHTTPRequestOperation.m */; };
@@ -91,6 +92,8 @@
 		A496761A1B188C5B001CA717 /* STPicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPicInfo.m; path = DataHandler/STPicInfo.m; sourceTree = "<group>"; };
 		A4EB8F521B195398007142A4 /* MCBaiduMoreResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCBaiduMoreResult.h; path = DataHandler/MCBaiduMoreResult.h; sourceTree = "<group>"; };
 		A4EB8F531B195398007142A4 /* MCBaiduMoreResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCBaiduMoreResult.m; path = DataHandler/MCBaiduMoreResult.m; sourceTree = "<group>"; };
+		B81635851B19B2B600CF69C9 /* MCResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCResultView.h; sourceTree = "<group>"; };
+		B81635861B19B2B600CF69C9 /* MCResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCResultView.m; sourceTree = "<group>"; };
 		B82303EF1B18426A00C7E71A /* SGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGRequest.h; sourceTree = "<group>"; };
 		B82303F01B18426A00C7E71A /* SGRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGRequest.m; sourceTree = "<group>"; };
 		B82303F11B18426A00C7E71A /* SGRequest+PicRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SGRequest+PicRef.h"; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				A496760D1B1871E2001CA717 /* Lib */,
 				A49675FB1B1871DC001CA717 /* MCShituViewController.h */,
 				A49675FC1B1871DC001CA717 /* MCShituViewController.m */,
+				B81635851B19B2B600CF69C9 /* MCResultView.h */,
+				B81635861B19B2B600CF69C9 /* MCResultView.m */,
 			);
 			name = DataHandler;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				A496760A1B1871DC001CA717 /* MCShituViewController.m in Sources */,
 				A4EB8F541B195398007142A4 /* MCBaiduMoreResult.m in Sources */,
 				B82304111B18433B00C7E71A /* AFURLSessionManager.m in Sources */,
+				B81635871B19B2B600CF69C9 /* MCResultView.m in Sources */,
 				A49676161B1880C4001CA717 /* MCMapViewController.m in Sources */,
 				B823040D1B18433B00C7E71A /* AFSecurityPolicy.m in Sources */,
 				F82C4AD619CA058E001CEA3C /* TGAssetImageFile.m in Sources */,
