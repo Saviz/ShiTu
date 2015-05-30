@@ -31,6 +31,7 @@
 #import "UIImage+CameraFilters.h"
 #import "SGRequest+PicRef.h"
 #import "STPicInfo.h"
+#import "MCMapViewController.h"
 
 static NSString* const kTGCacheSatureKey = @"TGCacheSatureKey";
 static NSString* const kTGCacheCurveKey = @"TGCacheCurveKey";
@@ -145,32 +146,32 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
         _photo = _photoView.image;
        
         return; //do not save photos
-        ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
-        TGAssetsLibrary *library = [TGAssetsLibrary defaultAssetsLibrary];
-        
-        void (^saveJPGImageAtDocumentDirectory)(UIImage *) = ^(UIImage *photo) {
-            [library saveJPGImageAtDocumentDirectory:_photo resultBlock:^(NSURL *assetURL) {
-                [_delegate cameraDidSavePhotoAtPath:assetURL];
-            } failureBlock:^(NSError *error) {
-                if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoWithError:)]) {
-                    [_delegate cameraDidSavePhotoWithError:error];
-                }
-            }];
-        };
-        
-        if ([[TGCamera getOption:kTGCameraOptionSaveImageToAlbum] boolValue] && status != ALAuthorizationStatusDenied) {
-            [library saveImage:_photo resultBlock:^(NSURL *assetURL) {
-                if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoAtPath:)]) {
-                    [_delegate cameraDidSavePhotoAtPath:assetURL];
-                }
-            } failureBlock:^(NSError *error) {
-                saveJPGImageAtDocumentDirectory(_photo);
-            }];
-        } else {
-            if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoAtPath:)]) {
-                saveJPGImageAtDocumentDirectory(_photo);
-            }
-        }
+//        ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
+//        TGAssetsLibrary *library = [TGAssetsLibrary defaultAssetsLibrary];
+//        
+//        void (^saveJPGImageAtDocumentDirectory)(UIImage *) = ^(UIImage *photo) {
+//            [library saveJPGImageAtDocumentDirectory:_photo resultBlock:^(NSURL *assetURL) {
+//                [_delegate cameraDidSavePhotoAtPath:assetURL];
+//            } failureBlock:^(NSError *error) {
+//                if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoWithError:)]) {
+//                    [_delegate cameraDidSavePhotoWithError:error];
+//                }
+//            }];
+//        };
+//        
+//        if ([[TGCamera getOption:kTGCameraOptionSaveImageToAlbum] boolValue] && status != ALAuthorizationStatusDenied) {
+//            [library saveImage:_photo resultBlock:^(NSURL *assetURL) {
+//                if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoAtPath:)]) {
+//                    [_delegate cameraDidSavePhotoAtPath:assetURL];
+//                }
+//            } failureBlock:^(NSError *error) {
+//                saveJPGImageAtDocumentDirectory(_photo);
+//            }];
+//        } else {
+//            if ([_delegate respondsToSelector:@selector(cameraDidSavePhotoAtPath:)]) {
+//                saveJPGImageAtDocumentDirectory(_photo);
+//            }
+//        }
     }
 }
 
@@ -251,10 +252,14 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
                  
                 if (GPS[@"Latitude"] == nil) {
                      //todo: switch to select map
-                  
+                    MCMapViewController *map = [MCMapViewController createMapViewPageWithImageUrl:newInfo.url];
+                    [self.navigationController pushViewController:map animated:YES];
+                    return;
                  } else {
+
                        [_delegate cameraDidSelectAlbumPhoto:_photo];
                      newInfo.gps = CLLocationCoordinate2DMake([GPS[@"Latitude"] doubleValue], [GPS[@"Longitude"] doubleValue]);
+
                  }
 
                  

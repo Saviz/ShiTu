@@ -11,6 +11,7 @@
 #import "TGCameraViewController.h"
 #import "MCShituViewController.h"
 #import "STPicInfo.h"
+#import "MCMapViewController.h"
 
 @interface TGInitialViewController () <TGCameraDelegate>
 
@@ -41,11 +42,14 @@
     return  self;
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [self startLocationManager];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self startLocationManager];
     
     [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
     
@@ -66,7 +70,14 @@
         
         STPicInfo *info = (STPicInfo *)notification.object;
         if (![info isGpsSetted]){
-            info.gps = self.location.coordinate;
+            if (self.location!= nil) {
+                info.gps = self.location.coordinate;
+            } else {
+                //no position
+                MCMapViewController *map = [MCMapViewController createMapViewPageWithImageUrl:info.url];
+                [self.navigationController pushViewController:map animated:YES];
+                return;
+            }
         }
     
         MCShituViewController *controller = [MCShituViewController createWebViewPageWithGPS:info.gps andImageUrl:info.url];
