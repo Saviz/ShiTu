@@ -40,18 +40,20 @@
         self.backgroundColor = [UIColor colorWithRed:240/255.0 green:239/255.0 blue:244/255.0 alpha:1];
         
         float screenWidth = frame.size.width;
-        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth/750*398)];
-        self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+        CGRect imgFrame = CGRectMake(0, 0, screenWidth, screenWidth/750*398);
+        self.imageView = [[UIImageView alloc]initWithFrame:imgFrame];
+        UIImage *tmpimage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+        self.imageView.image =  [self cutImage:tmpimage WithFrame:imgFrame];
         [self addSubview:self.imageView];
         
         _result = result;
-         NSInteger contentHeight = 50+ (ButtonHeight + 15) * [result count];
+        NSInteger contentHeight = 50+ (ButtonHeight + 15) * [result count];
         if (result != nil) {
             self.contentView = [[UIView alloc]initWithFrame:CGRectMake(0, screenWidth/750*398+20, screenWidth, contentHeight)];
             [self addSubview: self.contentView];
             
             UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, screenWidth, 30)];
-//            label1.textColor = oColor;
+            //            label1.textColor = oColor;
             label1.text = @"您想找的菜可能是：";
             [self.contentView addSubview:label1];
             
@@ -69,13 +71,13 @@
                 NSLog(@"%@", result[i]);
                 [self.contentView addSubview:button];
             }
-        
+            
         }
         
         self.reshotView = [[UIView alloc]initWithFrame:CGRectMake(0, screenWidth/750*398+20+contentHeight, screenWidth, 100)];
         [self addSubview:self.reshotView];
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, screenWidth, 30)];
-//        label1.textColor = oColor;
+        //        label1.textColor = oColor;
         label1.text = @"没有找到？换个角度拍试试？";
         [self.reshotView addSubview:label1];
         
@@ -101,5 +103,28 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MCReshotClicked"
                                                         object:nil];
 }
+
+- (UIImage *)cutImage:(UIImage *)image WithFrame:(CGRect)frame{
+    CGSize imageSize = image.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    
+    CGFloat targetWidth = frame.size.width;
+    CGFloat targetHeight = frame.size.height;
+    
+    CGFloat r = targetWidth/width;
+    targetHeight = targetHeight/r;
+    targetWidth = targetWidth/r;
+    CGFloat offset = (height - targetHeight)/2;
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(targetWidth, targetHeight), NO, 0.);
+    [image drawAtPoint:CGPointMake(0 , -offset)
+             blendMode:kCGBlendModeCopy
+                 alpha:1.];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 
 @end

@@ -238,6 +238,8 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     [request startUploadData:imageData imagePath:@"pic_path" ByPostWithFinishAction:^(NSString *resultStr, NSError *error) {
         self.uploadedUrl = [resultStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
         
+        
+        NSLog(@"uploadUrl...%@", self.uploadedUrl);
         STPicInfo *newInfo = [[STPicInfo alloc]init];
         newInfo.url = self.uploadedUrl;
 
