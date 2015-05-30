@@ -15,20 +15,20 @@ SGRequestType ShoppingRec = @"";
 @implementation SGRequest (PicRef)
 +(SGRequest*)SGGetImageRecResultURLWithImageData:(NSData*)ImageData;
 {
-    SGRequest *request = [SGRequest requestWithDominString:TestPicDomin withType:ImageRec];
+    SGRequest *request = [SGRequest requestWithDominString:PicDomin withType:ImageRec];
 //    [request addParamObj:ImageData forKey:@"pic_path"];
     return request;
 }
 
 +(SGRequest*)SGGetAnswerResultURLWithImageData:(NSData*)ImageData
 {
-    SGRequest *request = [SGRequest requestWithDominString:TestPicDomin withType:ImageRec];
+    SGRequest *request = [SGRequest requestWithDominString:PicDomin withType:ImageRec];
 //    [request addParamObj:ImageData forKey:@"ocr_img"];
     return request;
 }
 +(SGRequest*)SGGetShopingResultURLWithImageData:(NSData*)imageData
 {
-    SGRequest *request = [SGRequest requestWithDominString:TestPicDomin withType:ImageRec];
+    SGRequest *request = [SGRequest requestWithDominString:PicDomin withType:ImageRec];
     return request;
 }
 @end
