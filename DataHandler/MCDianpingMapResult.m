@@ -108,7 +108,7 @@
              NSString *dishs = [dish stringByReplacingOccurrencesOfString:@";" withString:@","];
              NSString *title = [MCDianpingMapResult extractNode:@"key" fromXml:xml];
              if ([@"美时面馆" isEqualToString:title]){
-                 dishs = [dishs stringByAppendingString:@",鳗鱼饭"];
+                 dishs = [dishs stringByAppendingString:@",鳗鱼饭,肥牛面,酸菜牛肉面"];
              }
              double distance = [[MCDianpingMapResult extractNodeValue:@"distance" fromXml:xml] doubleValue];
              if (dish.length > 1 && (distance < 30 || results.count < 2)){
