@@ -85,18 +85,18 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     
     info.gps = CLLocationCoordinate2DMake(39.9926133333333, 116.3263550000000);
     info.url = @"http://img02.sogoucdn.com/app/a/100520146/F9F2ADD5EF305AF5F38637C04FF15A09";
-    [foodsData addObject:@{@"name":@"酸菜牛肉面", @"info":info, @"pic":@"backgroundHeader"}];
+    [foodsData addObject:@{@"name":@"", @"info":info, @"pic":@"img0"}];
     
     
     info = [[STPicInfo alloc]init];
-    info.gps = CLLocationCoordinate2DMake(40.008486f, 116.354912f);
-    info.url = @"http://img01.sogoucdn.com/app/a/100520146/35FA31E95B7C6B90EDE4A7A31F3A596F";
-    [foodsData addObject:@{@"name":@"鸳鸯锅", @"info":info, @"pic":@"backgroundHeader"}];
+    info.gps = CLLocationCoordinate2DMake(31.31728666667, 120.6242833333333f);
+    info.url = @"http://img03.sogoucdn.com/app/a/100520146/057EB97CC78E079432BF67679CBD9D81";
+    [foodsData addObject:@{@"name":@"", @"info":info, @"pic":@"img1"}];
     
     info = [[STPicInfo alloc]init];
-    info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
-    info.url = @"http://img03.sogoucdn.com/app/a/100520146/996B189157DFB6BF9EB28A311E31D46A";
-    [foodsData addObject:@{@"name":@"小龙虾", @"info":info, @"pic":@"CameraEffectCurve"}];
+    info.gps = CLLocationCoordinate2DMake(40.0084877014160f, 116.3549118041992f);
+    info.url = @"http://img02.sogoucdn.com/app/a/100520146/64228BAF6994B7BB4F352D725C7A8AFC";
+    [foodsData addObject:@{@"name":@"", @"info":info, @"pic":@"img2"}];
     /*
     info = [[STPicInfo alloc]init];
     info.gps = CLLocationCoordinate2DMake(39.99261799f, 116.32617276f);
