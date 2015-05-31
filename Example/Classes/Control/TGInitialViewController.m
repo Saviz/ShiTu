@@ -191,8 +191,10 @@ int bitmapInfo = kCGImageAlphaPremultipliedLast;
     roundButton.frame = frame;
     roundButton.clipsToBounds = YES;
     roundButton.layer.cornerRadius = radius/2.0f;
-    //    self.shotButton.layer.borderColor=[UIColor redColor].CGColor;
-    //    self.shotButton.layer.borderWidth=2.0f;
+    if (radius == FoodButtonRadiu) {
+        roundButton.layer.borderColor=[UIColor colorWithRed:236/255.0 green:130/255.0 blue:72/255.0 alpha:1].CGColor;
+        roundButton.layer.borderWidth=3.0f;
+    }
     return roundButton;
 }
 
