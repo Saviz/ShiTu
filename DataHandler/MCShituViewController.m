@@ -15,6 +15,8 @@
 
 #define NavigationHeight self.navigationController.navigationBar.frame.size.height+20
 
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 @interface MCShituViewController ()<MCShituDelegate, UIWebViewDelegate, MCResultViewDelegate>
 @end
 
@@ -22,7 +24,9 @@
     UIWebView *webview;
     UIView *loading1;
     UIView *loading2;
+    UIView *rot;
     MCShitu *shitu;
+    BOOL stop;
 }
 
 + (instancetype)createWebViewPageWithGPS:(CLLocationCoordinate2D)gps andImageUrl:(NSString *)imageUrl
@@ -37,11 +41,27 @@
     [super viewDidLoad];
     
     loading1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/2)];
-    [loading1 setBackgroundColor:[UIColor whiteColor]];
+    [loading1 setBackgroundColor:[UIColor colorWithRed:235/255.0 green:134/255.0 blue:76/255.0 alpha:1]];
     [self.view addSubview:loading1];
+    
     loading2 = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2, self.view.bounds.size.width, self.view.bounds.size.height/2)];
-    [loading2 setBackgroundColor:[UIColor lightGrayColor]];
+    [loading2 setBackgroundColor:[UIColor colorWithRed:235/255.0 green:134/255.0 blue:76/255.0 alpha:1]];
     [self.view addSubview:loading2];
+    
+    UIImageView *li = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading1"]];
+    UIImageView *li1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading2"]];
+    rot = [[UIView alloc] initWithFrame:CGRectMake((loading1.bounds.size.width-li.bounds.size.width)/2, (loading1.bounds.size.height-li.bounds.size.height), li.bounds.size.width, li.bounds.size.height+li1.bounds.size.height)];
+    li1.frame = CGRectMake(0, li.bounds.size.height, li1.bounds.size.width, li1.bounds.size.height);
+    [rot addSubview:li];
+    [rot addSubview:li1];
+    [self.view addSubview:rot];
+    
+    //[rot layer].anchorPoint = CGPointMake(rot.bounds.size.width/2, rot.bounds.size.height/2);
+    
+    
+    stop = NO;
+    
+    
     
     shitu = [[MCShitu alloc] init];
     shitu.delegate = self;
@@ -61,6 +81,44 @@
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = leftBarButton;
  
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    //CAAnimation *anim2 = [[rot layer] animationForKey:@"spinAnimation"];
+    // && [[anim valueForKey:@"animType"] isEqualToString:@"spinAnimation"]
+    if (flag){
+        NSLog(@"a");
+        if (stop){
+            [rot removeFromSuperview];
+            UIImageView *li = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading1"]];
+            li.frame = CGRectMake((loading1.bounds.size.width-li.bounds.size.width)/2, (loading1.bounds.size.height-li.bounds.size.height), li.bounds.size.width, li.bounds.size.height);
+            [loading1 addSubview:li];
+            
+            
+            li = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading2"]];
+            li.frame = CGRectMake((loading1.bounds.size.width-li.bounds.size.width)/2, 0, li.bounds.size.width, li.bounds.size.height);
+            [loading2 addSubview:li];
+            
+            [UIView animateWithDuration:0.5f animations:^(void){
+                
+                loading1.frame = CGRectMake(0, 0-loading1.frame.size.height, loading1.frame.size.width, loading1.frame.size.height);
+                loading2.frame = CGRectMake(0, self.view.bounds.size.height, loading2.frame.size.width, loading2.frame.size.height);
+            } completion:^(BOOL finished){
+                self.navigationController.navigationBar.hidden = NO;
+                [loading1 removeFromSuperview];
+                [loading2 removeFromSuperview];
+            }];
+        }else{
+            CABasicAnimation* spinAnimation = [CABasicAnimation
+                                               animationWithKeyPath:@"transform.rotation"];
+            spinAnimation.toValue = [NSNumber numberWithFloat:2*M_PI];
+            spinAnimation.duration = 1;
+            spinAnimation.delegate = self;
+            [rot.layer addAnimation:spinAnimation forKey:@"spinAnimation"];
+        }
+        
+
+    }
 }
 
 - (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
@@ -112,15 +170,7 @@
         MCResultView *resultView =[[MCResultView alloc]initWithFrame:frame WithURL:self.imageUrl WithResult:[response componentsSeparatedByString:@","]];
         resultView.delegate = self;
         [self.view insertSubview:resultView atIndex:0 ];
-        [UIView animateWithDuration:0.5f animations:^(void){
-            loading1.frame = CGRectMake(0, 0, loading1.frame.size.width, 0);
-            loading2.frame = CGRectMake(0, self.view.bounds.size.height, loading2.frame.size.width, 0);
-        } completion:^(BOOL finished){
-            self.navigationController.navigationBar.hidden = NO;
-            [loading1 removeFromSuperview];
-            [loading2 removeFromSuperview];
-        }];
-        
+        stop = YES;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", [error localizedDescription]);
         [self.navigationController popViewControllerAnimated:NO];
@@ -132,7 +182,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-
+    CABasicAnimation* spinAnimation = [CABasicAnimation
+                                       animationWithKeyPath:@"transform.rotation"];
+    spinAnimation.toValue = [NSNumber numberWithFloat:2*M_PI];
+    spinAnimation.duration = 1;
+    spinAnimation.delegate = self;
+    [rot.layer addAnimation:spinAnimation forKey:@"spinAnimation"];
 //    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
@@ -164,7 +219,7 @@
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
     
-    NSString *url = [NSString stringWithFormat:@"http://10.11.210.13:3000/dish?name=%@&imgurl=%@", [foodName urlEncodeUsingEncoding:NSUTF8StringEncoding], [self.imageUrl urlEncodeUsingEncoding:NSUTF8StringEncoding]];
+    NSString *url = [NSString stringWithFormat:@"http://123.126.68.90:3000/dish?name=%@&imgurl=%@", [foodName urlEncodeUsingEncoding:NSUTF8StringEncoding], [self.imageUrl urlEncodeUsingEncoding:NSUTF8StringEncoding]];
     //url = @"http://www.sogou.com/";
     NSLog(@"%@", url);
     NSURL *nu = [[NSURL alloc] initWithString:url];
