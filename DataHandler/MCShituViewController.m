@@ -150,7 +150,7 @@
     NSLog(@"%@", postStr);
     NSDictionary *params = @{@"body": postStr};
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90:3000/"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://123.126.68.90/shitu"]];
     
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -219,7 +219,7 @@
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, height, self.view.bounds.size.width, self.view.bounds.size.height-height)];
     webview.delegate = self;
     
-    NSString *url = [NSString stringWithFormat:@"http://123.126.68.90:3000/dish?name=%@&imgurl=%@", [foodName urlEncodeUsingEncoding:NSUTF8StringEncoding], [self.imageUrl urlEncodeUsingEncoding:NSUTF8StringEncoding]];
+    NSString *url = [NSString stringWithFormat:@"http://123.126.68.90/dish?name=%@&imgurl=%@", [foodName urlEncodeUsingEncoding:NSUTF8StringEncoding], [self.imageUrl urlEncodeUsingEncoding:NSUTF8StringEncoding]];
     //url = @"http://www.sogou.com/";
     NSLog(@"%@", url);
     NSURL *nu = [[NSURL alloc] initWithString:url];
