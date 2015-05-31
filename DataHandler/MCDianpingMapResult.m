@@ -111,7 +111,11 @@
                  dishs = [dishs stringByAppendingString:@",鳗鱼饭,肥牛面,酸菜牛肉面"];
              }
              double distance = [[MCDianpingMapResult extractNodeValue:@"distance" fromXml:xml] doubleValue];
-             if (dish.length > 1 && (distance < 65 || results.count < 2)){
+             if ([@"星巴克 (威新店)" isEqualToString:title]){
+                 distance = 20.0f;
+             }
+
+             if (dish.length > 1 && (distance < 30 || results.count < 2)){
              [results addObject:[NSDictionary dictionaryWithObjects:
                 [NSArray arrayWithObjects:
                     [MCDianpingMapResult extractNode:@"img_link" fromXml:xml],
