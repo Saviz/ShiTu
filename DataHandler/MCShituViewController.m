@@ -112,7 +112,7 @@
             CABasicAnimation* spinAnimation = [CABasicAnimation
                                                animationWithKeyPath:@"transform.rotation"];
             spinAnimation.toValue = [NSNumber numberWithFloat:2*M_PI];
-            spinAnimation.duration = 1;
+            spinAnimation.duration = 1.2;
             spinAnimation.delegate = self;
             [rot.layer addAnimation:spinAnimation forKey:@"spinAnimation"];
         }
@@ -185,7 +185,7 @@
     CABasicAnimation* spinAnimation = [CABasicAnimation
                                        animationWithKeyPath:@"transform.rotation"];
     spinAnimation.toValue = [NSNumber numberWithFloat:2*M_PI];
-    spinAnimation.duration = 1;
+    spinAnimation.duration = 1.2;
     spinAnimation.delegate = self;
     [rot.layer addAnimation:spinAnimation forKey:@"spinAnimation"];
 //    [self.navigationController setNavigationBarHidden:NO animated:animated];
