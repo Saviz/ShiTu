@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C3E3D90E-5D31-48C9-B545-1E606A7AA375</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ShiTu</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>208C78F98302F9A001146F01193415396DAB1E0B</key>
+		<string>https://github.com/cecand/ShiTu.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ShiTu.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>208C78F98302F9A001146F01193415396DAB1E0B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cecand/ShiTu.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>208C78F98302F9A001146F01193415396DAB1E0B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>208C78F98302F9A001146F01193415396DAB1E0B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ShiTu</string>
+		</dict>
+	</array>
+</dict>
+</plist>

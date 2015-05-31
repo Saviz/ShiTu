@@ -134,7 +134,7 @@
 		F82C4ACE19CA050C001CEA3C /* TGAssetsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGAssetsLibrary.m; sourceTree = "<group>"; };
 		F82C4AD419CA058E001CEA3C /* TGAssetImageFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGAssetImageFile.h; sourceTree = "<group>"; };
 		F82C4AD519CA058E001CEA3C /* TGAssetImageFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGAssetImageFile.m; sourceTree = "<group>"; };
-		F82F8E8119C4EFE700A47148 /* ShiTu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiTu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F82F8E8119C4EFE700A47148 /* 食图.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "食图.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82F8EC719C4F29000A47148 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F82F8EC819C4F29000A47148 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F82F8ED219C4F29000A47148 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		F82F8E8219C4EFE700A47148 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F82F8E8119C4EFE700A47148 /* ShiTu.app */,
+				F82F8E8119C4EFE700A47148 /* 食图.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,7 +477,7 @@
 			);
 			name = ShiTu;
 			productName = TGCameraViewController;
-			productReference = F82F8E8119C4EFE700A47148 /* ShiTu.app */;
+			productReference = F82F8E8119C4EFE700A47148 /* 食图.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -635,6 +635,77 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B816358E1B1A83A100CF69C9 /* ad hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "ad hoc";
+		};
+		B816358F1B1A83A100CF69C9 /* ad hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Sogou Technology Development Co., Ltd.";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SGSpeechRecognizer,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/trunk/SGImageRecognition/SGImageRecognition/Utility/ThirdLib/Bugly_libstdc++",
+				);
+				INFOPLIST_FILE = Example/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/KSCrash,
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/mta,
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SGSpeechRecognizer,
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/SogouPassportSDK,
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/umeng,
+					/Users/cecand/Documents/Xcode/sogousearchTrunk/sogousearch/ZBarSDK,
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/KSCrash",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/mta",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SGSpeechRecognizer",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/SogouPassportSDK",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/umeng",
+					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/ZBarSDK",
+				);
+				PRODUCT_NAME = "食图";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "ad hoc";
+		};
 		F82F8EA219C4EFE800A47148 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,8 +815,8 @@
 					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/umeng",
 					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/ZBarSDK",
 				);
-				PRODUCT_NAME = ShiTu;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = "食图";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -778,8 +849,8 @@
 					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/umeng",
 					"$(PROJECT_DIR)/projects/sogousearch/sogousearch/ZBarSDK",
 				);
-				PRODUCT_NAME = ShiTu;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = "食图";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -791,6 +862,7 @@
 			buildConfigurations = (
 				F82F8EA219C4EFE800A47148 /* Debug */,
 				F82F8EA319C4EFE800A47148 /* Release */,
+				B816358E1B1A83A100CF69C9 /* ad hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -800,6 +872,7 @@
 			buildConfigurations = (
 				F82F8EA519C4EFE800A47148 /* Debug */,
 				F82F8EA619C4EFE800A47148 /* Release */,
+				B816358F1B1A83A100CF69C9 /* ad hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
